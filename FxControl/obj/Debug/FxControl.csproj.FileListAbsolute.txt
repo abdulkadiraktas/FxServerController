@@ -7,3 +7,4 @@ C:\Users\Abdulkadir\source\repos\FxControl\FxControl\obj\Debug\FxControl.csproj.
 C:\Users\Abdulkadir\source\repos\FxControl\FxControl\obj\Debug\FxControl.csproj.CoreCompileInputs.cache
 C:\Users\Abdulkadir\source\repos\FxControl\FxControl\obj\Debug\FxControl.exe
 C:\Users\Abdulkadir\source\repos\FxControl\FxControl\obj\Debug\FxControl.pdb
+C:\Users\Abdulkadir\source\repos\FxControl\FxControl\obj\Debug\FxControl.csprojAssemblyReference.cache

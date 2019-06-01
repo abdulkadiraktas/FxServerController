@@ -16,7 +16,11 @@ namespace FxControl
     public partial class Form1 : Form
     {
         private Process _process;
+
+        DataTable dt;
+
         private Boolean _isFivemServerRunning, oyunbasladı;
+
         public Form1()
         {
             InitializeComponent();
@@ -24,10 +28,10 @@ namespace FxControl
 
         private void fxselectlocation()
         {
-            if (FxControl.Properties.Settings.Default.fxlocation == ""|| FxControl.Properties.Settings.Default.fxlocation == null)
+            if (FxControl.Properties.Settings.Default.fxlocation == "" || FxControl.Properties.Settings.Default.fxlocation == null)
             {
                 OpenFileDialog fx = new OpenFileDialog();
-                fx.Title = "Please select FXServer.exe"; 
+                fx.Title = "Please select FXServer.exe";
                 fx.Filter = "FXServer|FXServer.exe";
                 if (fx.ShowDialog() == DialogResult.OK)
                 {
@@ -45,12 +49,13 @@ namespace FxControl
                 txtfx.Text = FxControl.Properties.Settings.Default.fxlocation;
             }
         }
+
         private void configselectlocation()
         {
             if (FxControl.Properties.Settings.Default.config == "" || FxControl.Properties.Settings.Default.config == null)
             {
                 OpenFileDialog conf = new OpenFileDialog();
-                conf.Title = "Please select server.cfg"; 
+                conf.Title = "Please select server.cfg";
                 conf.Filter = "Config|server.cfg";
                 if (conf.ShowDialog() == DialogResult.OK)
                 {
@@ -68,11 +73,16 @@ namespace FxControl
                 txtconfig.Text = FxControl.Properties.Settings.Default.config;
             }
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             //FxControl.Properties.Settings.Default.config = "";
             //FxControl.Properties.Settings.Default.fxlocation = "";
             //FxControl.Properties.Settings.Default.Save();
+            dt = new DataTable();
+            dt.Columns.Add("resource");
+
+
             Control.CheckForIllegalCrossThreadCalls = false;
             fxselectlocation();
             configselectlocation();
@@ -84,7 +94,7 @@ namespace FxControl
         }
 
         private void timer1_Tick(object sender, EventArgs e)
-        {  
+        {
             for (int i = 0; i < listBox1.Items.Count; i++)
             {
                 if (DateTime.Now.ToString("HH:mm:ss") == listBox1.Items[i].ToString())
@@ -135,12 +145,11 @@ namespace FxControl
         {
             StartServer();
             progressBar1.Maximum = 100;
-
-
         }
 
         private void StopServer()
         {
+            dt.Clear();
             _process.Kill();
             _isFivemServerRunning = false;
         }
@@ -154,13 +163,13 @@ namespace FxControl
 
         public void CheckIfCrashed()
         {
-            if (!_isFivemServerRunning) return; 
+            if (!_isFivemServerRunning) return;
 
             if (!IsProcessRunning())
-            { 
+            {
                 StartServer();
                 return;
-            } 
+            }
         }
 
         private bool IsProcessRunning()
@@ -195,11 +204,11 @@ namespace FxControl
                 }
                 catch (Exception)
                 {
-                     
+
                 }
                 Thread.Sleep(3000);
             }
-            _process = new Process(); 
+            _process = new Process();
 
             var startInfo = new ProcessStartInfo
             {
@@ -214,12 +223,13 @@ namespace FxControl
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             _process.StartInfo = startInfo;
+            _process.StartInfo.RedirectStandardInput = true;
             // string date = DateTime.Now.ToString("yyyy_MM_dd_HH_mm"); 
             _process.OutputDataReceived += CaptureOutput;
             _process.Start();
             _process.BeginOutputReadLine();
             _isFivemServerRunning = true;
-        } 
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -248,18 +258,29 @@ namespace FxControl
         {
             listBox1.Items.Clear();
         }
-
+        //started resource
         private void CaptureOutput(object sender, DataReceivedEventArgs e)
         {
             if (e.Data != null)
             {
                 richTextBox1.Text = e.Data + Environment.NewLine + richTextBox1.Text;
-                if (e.Data== "Server license key authentication succeeded. Welcome!")
+                if (e.Data == "Server license key authentication succeeded. Welcome!")
                 {
                     oyunbasladı = true;
                     progressBar1.Value = progressBar1.Maximum;
-                    
                     button1.BackColor = Color.Green;
+
+                }
+                else if (e.Data.Contains("Started resource"))
+                {
+                    //e.Data.Replace("started resource").Trim()
+                    //  dataGridView1.Rows.Add(e.Data.Replace("Started resource", "").Trim());
+                    //AddData(e.Data.Replace("Started resource", "").Trim());
+                    Thread addDatathread = new Thread(() =>
+                    AddData(e.Data.Replace("Started resource", "").Trim()));
+                    addDatathread.Start();
+
+
                 }
                 if (!oyunbasladı)
                 {
@@ -275,6 +296,28 @@ namespace FxControl
             }
         }
 
+        private void ress(string status, string resourcename)
+        {
+            StreamWriter myStreamWriter = _process.StandardInput;
+            myStreamWriter.WriteLine(status + " " + resourcename);
+            myStreamWriter.Flush();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text != "" && comboBox1.Text != "")
+            {
+                ress(comboBox1.Text, textBox1.Text);
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            StreamWriter myStreamWriter = _process.StandardInput;
+            myStreamWriter.WriteLine("refresh");
+            myStreamWriter.Flush();
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -283,8 +326,48 @@ namespace FxControl
             }
             catch (Exception)
             {
-                 
+
             }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ((DataTable)dataGridView1.DataSource).DefaultView.RowFilter = string.Format("resource like '%{0}%'", textBox2.Text.Trim().Replace("'", "''"));
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void textBox2_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                ress("stop", dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
+            }
+        }
+
+        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ress("restart", dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
+        }
+
+        private Task AddData(string data)
+        {
+            DataRow row = dt.NewRow();
+            row["resource"] = data;
+            dt.Rows.Add(row);
+            dataGridView1.DataSource = dt;
+            return Task.CompletedTask;
         }
     }
 }
