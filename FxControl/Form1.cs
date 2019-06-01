@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using FxControl.Properties;
+using System;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,25 +17,29 @@ namespace FxControl
 
         DataTable dt;
 
-        private Boolean _isFivemServerRunning, oyunbasladı;
+        private Boolean _isFivemServerRunning, ServerStarted;
+
+        string date;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void fxselectlocation()
+        private void Fxselectlocation()
         {
-            if (FxControl.Properties.Settings.Default.fxlocation == "" || FxControl.Properties.Settings.Default.fxlocation == null)
+            if (string.IsNullOrWhiteSpace(Settings.Default.fxlocation))
             {
-                OpenFileDialog fx = new OpenFileDialog();
-                fx.Title = "Please select FXServer.exe";
-                fx.Filter = "FXServer|FXServer.exe";
+                OpenFileDialog fx = new OpenFileDialog
+                {
+                    Title = Resources.SelectServerExe,
+                    Filter = "FXServer|FXServer.exe"
+                };
                 if (fx.ShowDialog() == DialogResult.OK)
                 {
-                    FxControl.Properties.Settings.Default.fxlocation = fx.FileName;
-                    FxControl.Properties.Settings.Default.Save();
-                    txtfx.Text = FxControl.Properties.Settings.Default.fxlocation;
+                    Settings.Default.fxlocation = fx.FileName;
+                    Settings.Default.Save();
+                    txtfx.Text = Settings.Default.fxlocation;
                 }
                 else
                 {
@@ -46,60 +48,57 @@ namespace FxControl
             }
             else
             {
-                txtfx.Text = FxControl.Properties.Settings.Default.fxlocation;
+                txtfx.Text = Settings.Default.fxlocation;
             }
         }
 
-        private void configselectlocation()
+        private void Configselectlocation()
         {
-            if (FxControl.Properties.Settings.Default.config == "" || FxControl.Properties.Settings.Default.config == null)
+            if (string.IsNullOrWhiteSpace(Settings.Default.config))
             {
-                OpenFileDialog conf = new OpenFileDialog();
-                conf.Title = "Please select server.cfg";
-                conf.Filter = "Config|server.cfg";
+                OpenFileDialog conf = new OpenFileDialog
+                {
+                    Title = Resources.SelectServerCfg,
+                    Filter = "Config|server.cfg"
+                };
                 if (conf.ShowDialog() == DialogResult.OK)
                 {
-                    FxControl.Properties.Settings.Default.config = conf.FileName;
-                    FxControl.Properties.Settings.Default.Save();
-                    txtconfig.Text = FxControl.Properties.Settings.Default.config;
+                    Settings.Default.config = conf.FileName;
+                    Settings.Default.Save();
+                    txtconfig.Text = Settings.Default.config;
                 }
                 else
                 {
-                    this.Close();
+                    Close();
                 }
             }
             else
             {
-                txtconfig.Text = FxControl.Properties.Settings.Default.config;
+                txtconfig.Text = Settings.Default.config;
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //FxControl.Properties.Settings.Default.config = "";
-            //FxControl.Properties.Settings.Default.fxlocation = "";
-            //FxControl.Properties.Settings.Default.Save();
+            //Settings.Default.config = "";
+            //Settings.Default.fxlocation = "";
+            //Settings.Default.Save();
             dt = new DataTable();
             dt.Columns.Add("resource");
 
 
-            Control.CheckForIllegalCrossThreadCalls = false;
-            fxselectlocation();
-            configselectlocation();
+            CheckForIllegalCrossThreadCalls = false;
+            Fxselectlocation();
+            Configselectlocation();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
-            listBox1.Items.Add(dateTimePicker1.Value.ToString("HH:mm:ss"));
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            for (int i = 0; i < listBox1.Items.Count; i++)
+            for (int i = 0; i < lstBoxTiming.Items.Count; i++)
             {
-                if (DateTime.Now.ToString("HH:mm:ss") == listBox1.Items[i].ToString())
+                if (DateTime.Now.ToString("HH:mm:ss") == lstBoxTiming.Items[i].ToString())
                 {
-                    listBox1.Items.Remove(listBox1.Items[i]);
+                    lstBoxTiming.Items.Remove(lstBoxTiming.Items[i]);
                     timer1.Stop();
                     OnRestart();
                 }
@@ -107,44 +106,24 @@ namespace FxControl
 
             if (_isFivemServerRunning)
             {
-                button1.Enabled = false;
-                button2.Enabled = true;
-                button3.Enabled = true;
-                button5.Enabled = false;
-                button6.Enabled = false;
+                btnStartServer.Enabled = false;
+                btnStopServer.Enabled = true;
+                btnRestartServer.Enabled = true;
+                btnChangeServerLocation.Enabled = false;
+                btnChangeConfigLocation.Enabled = false;
                 CheckIfCrashed();
             }
             else
             {
-                button1.Enabled = true;
-                button2.Enabled = false;
-                button3.Enabled = false;
-                button5.Enabled = true;
-                button6.Enabled = true;
+                btnStartServer.Enabled = true;
+                btnStopServer.Enabled = false;
+                btnRestartServer.Enabled = false;
+                btnChangeServerLocation.Enabled = true;
+                btnChangeConfigLocation.Enabled = true;
                 progressBar1.Value = 0;
-                button1.BackColor = Color.Transparent;
+                btnStartServer.BackColor = Color.Transparent;
             }
 
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            FxControl.Properties.Settings.Default.fxlocation = null;
-            FxControl.Properties.Settings.Default.Save();
-            fxselectlocation();
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            FxControl.Properties.Settings.Default.config = null;
-            FxControl.Properties.Settings.Default.Save();
-            configselectlocation();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            StartServer();
-            progressBar1.Maximum = 100;
         }
 
         private void StopServer()
@@ -174,14 +153,14 @@ namespace FxControl
 
         private bool IsProcessRunning()
         {
-            if (this._process == null)
+            if (_process == null)
             {
                 return false;
             }
 
             try
             {
-                Process.GetProcessById(this._process.Id);
+                Process.GetProcessById(_process.Id);
             }
             catch (ArgumentException)
             {
@@ -193,9 +172,14 @@ namespace FxControl
 
         public void StartServer()
         {
-            oyunbasladı = false;
-            string serverPath = FxControl.Properties.Settings.Default.config.Replace("server.cfg", "");
-            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(@serverPath + "cache");
+            string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/Logs/";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            ServerStarted = false;
+            string serverPath = Settings.Default.config.Replace("server.cfg", "");
+            DirectoryInfo dir = new DirectoryInfo(@serverPath + "cache");
             if (dir.Exists)
             {
                 try
@@ -213,10 +197,10 @@ namespace FxControl
             var startInfo = new ProcessStartInfo
             {
                 WindowStyle = ProcessWindowStyle.Hidden,
-                FileName = FxControl.Properties.Settings.Default.fxlocation,       // +set citizen_dir C:/FiveM/FXServer.exe
-                Arguments = "+set citizen_dir " + FxControl.Properties.Settings.Default.fxlocation.Replace("FXServer.exe", "") + // C:/FiveM
+                FileName = Settings.Default.fxlocation,       // +set citizen_dir C:/FiveM/FXServer.exe
+                Arguments = "+set citizen_dir " + Settings.Default.fxlocation.Replace("FXServer.exe", "") + // C:/FiveM
                          "/citizen/ +exec server.cfg",         // /citizen/ +exec server.cfg
-                WorkingDirectory = FxControl.Properties.Settings.Default.config.Replace("\\server.cfg", "")                    // C:/FiveM/cfx-server-data-master
+                WorkingDirectory = Settings.Default.config.Replace("\\server.cfg", "")                    // C:/FiveM/cfx-server-data-master
             };
             startInfo.CreateNoWindow = true;
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -224,51 +208,25 @@ namespace FxControl
             startInfo.RedirectStandardOutput = true;
             _process.StartInfo = startInfo;
             _process.StartInfo.RedirectStandardInput = true;
-            // string date = DateTime.Now.ToString("yyyy_MM_dd_HH_mm"); 
+            date = DateTime.Now.ToString("yyyy_MM_dd_HH_mm");
             _process.OutputDataReceived += CaptureOutput;
             _process.Start();
             _process.BeginOutputReadLine();
             _isFivemServerRunning = true;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            richTextBox1.Text = "";
-            StopServer();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            richTextBox1.Text = "";
-            OnRestart();
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            if (listBox1.SelectedItems.Count > 0)
-            {
-                for (int i = 0; i < listBox1.SelectedItems.Count; i++)
-                {
-                    listBox1.Items.Remove(listBox1.SelectedItems[i]);
-                }
-            }
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            listBox1.Items.Clear();
-        }
         //started resource
         private void CaptureOutput(object sender, DataReceivedEventArgs e)
         {
             if (e.Data != null)
             {
-                richTextBox1.Text = e.Data + Environment.NewLine + richTextBox1.Text;
+                Invoke(new Action(() => richTxtLogScreen.AppendText(Environment.NewLine + e.Data)));
+                Invoke(new Action(() => richTxtLogScreen.ScrollToCaret()));
                 if (e.Data == "Server license key authentication succeeded. Welcome!")
                 {
-                    oyunbasladı = true;
+                    ServerStarted = true;
                     progressBar1.Value = progressBar1.Maximum;
-                    button1.BackColor = Color.Green;
+                    btnStartServer.BackColor = Color.Green;
 
                 }
                 else if (e.Data.Contains("Started resource"))
@@ -282,7 +240,7 @@ namespace FxControl
 
 
                 }
-                if (!oyunbasladı)
+                if (!ServerStarted)
                 {
                     if (progressBar1.Value < progressBar1.Maximum)
                     {
@@ -293,25 +251,26 @@ namespace FxControl
                         progressBar1.Maximum += 100;
                     }
                 }
+                File.AppendAllText(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/Logs/" + date + ".txt", e.Data.ToString() + "\n");
             }
         }
 
-        private void ress(string status, string resourcename)
+        private void Ress(string status, string resourcename)
         {
             StreamWriter myStreamWriter = _process.StandardInput;
             myStreamWriter.WriteLine(status + " " + resourcename);
             myStreamWriter.Flush();
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void Button10_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != "" && comboBox1.Text != "")
+            if (!string.IsNullOrWhiteSpace(textBox1.Text) && !string.IsNullOrWhiteSpace(comboBox1.Text))
             {
-                ress(comboBox1.Text, textBox1.Text);
+                Ress(comboBox1.Text, textBox1.Text);
             }
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void Button9_Click(object sender, EventArgs e)
         {
             StreamWriter myStreamWriter = _process.StandardInput;
             myStreamWriter.WriteLine("refresh");
@@ -330,7 +289,7 @@ namespace FxControl
             }
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void TextBox2_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -341,24 +300,82 @@ namespace FxControl
             }
         }
 
-        private void textBox2_TextChanged_1(object sender, EventArgs e)
+        private void TextBox2_TextChanged_1(object sender, EventArgs e)
         {
 
         }
 
-        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        private void StopToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                ress("stop", dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                Ress("stop", dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
                 dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
             }
         }
 
-        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RestartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ress("restart", dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            Ress("restart", dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
             dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
+        }
+
+        private void BtnChangeServerLocation_Click(object sender, EventArgs e)
+        {
+            Settings.Default.fxlocation = null;
+            Settings.Default.Save();
+            Fxselectlocation();
+        }
+
+        private void BtnChangeConfigLocation_Click(object sender, EventArgs e)
+        {
+            Settings.Default.config = null;
+            Settings.Default.Save();
+            Configselectlocation();
+        }
+
+        private void BtnAddTimeToList_Click(object sender, EventArgs e)
+        {
+            lstBoxTiming.Items.Add(dateTimePicker1.Value.ToString("HH:mm:ss"));
+        }
+
+        private void BtnDeleteSelectedTime_Click(object sender, EventArgs e)
+        {
+            if (lstBoxTiming.SelectedItems.Count > 0)
+            {
+                for (int i = 0; i < lstBoxTiming.SelectedItems.Count; i++)
+                {
+                    lstBoxTiming.Items.Remove(lstBoxTiming.SelectedItems[i]);
+                }
+            }
+        }
+
+        private void BtnClearTimerList_Click(object sender, EventArgs e)
+        {
+            lstBoxTiming.Items.Clear();
+        }
+
+        private void Button8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnStartServer_Click(object sender, EventArgs e)
+        {
+            StartServer();
+            progressBar1.Maximum = 100;
+        }
+
+        private void BtnStopServer_Click(object sender, EventArgs e)
+        {
+            richTxtLogScreen.Text = string.Empty;
+            StopServer();
+        }
+
+        private void BtnRestartServer_Click(object sender, EventArgs e)
+        {
+            richTxtLogScreen.Text = string.Empty;
+            OnRestart();
         }
 
         private Task AddData(string data)
