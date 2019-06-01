@@ -1,0 +1,9 @@
+C:\Users\Abdulkadir\source\repos\FxControl\FxControl\bin\Debug\FxControl.exe.config
+C:\Users\Abdulkadir\source\repos\FxControl\FxControl\bin\Debug\FxControl.exe
+C:\Users\Abdulkadir\source\repos\FxControl\FxControl\bin\Debug\FxControl.pdb
+C:\Users\Abdulkadir\source\repos\FxControl\FxControl\obj\Debug\FxControl.Form1.resources
+C:\Users\Abdulkadir\source\repos\FxControl\FxControl\obj\Debug\FxControl.Properties.Resources.resources
+C:\Users\Abdulkadir\source\repos\FxControl\FxControl\obj\Debug\FxControl.csproj.GenerateResource.cache
+C:\Users\Abdulkadir\source\repos\FxControl\FxControl\obj\Debug\FxControl.csproj.CoreCompileInputs.cache
+C:\Users\Abdulkadir\source\repos\FxControl\FxControl\obj\Debug\FxControl.exe
+C:\Users\Abdulkadir\source\repos\FxControl\FxControl\obj\Debug\FxControl.pdb
