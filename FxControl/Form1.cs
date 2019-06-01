@@ -24,11 +24,10 @@ namespace FxControl
 
         private void fxselectlocation()
         {
-            if (FxControl.Properties.Settings.Default.fxlocation == null)
+            if (FxControl.Properties.Settings.Default.fxlocation == ""|| FxControl.Properties.Settings.Default.fxlocation == null)
             {
                 OpenFileDialog fx = new OpenFileDialog();
-                fx.Title = "Please select FXServer.exe";
-                fx.FileName = "FXServer.exe";
+                fx.Title = "Please select FXServer.exe"; 
                 fx.Filter = "FXServer|FXServer.exe";
                 if (fx.ShowDialog() == DialogResult.OK)
                 {
@@ -48,11 +47,10 @@ namespace FxControl
         }
         private void configselectlocation()
         {
-            if (FxControl.Properties.Settings.Default.config == null)
+            if (FxControl.Properties.Settings.Default.config == "" || FxControl.Properties.Settings.Default.config == null)
             {
                 OpenFileDialog conf = new OpenFileDialog();
-                conf.Title = "Please select server.cfg";
-                conf.FileName = "server.cfg";
+                conf.Title = "Please select server.cfg"; 
                 conf.Filter = "Config|server.cfg";
                 if (conf.ShowDialog() == DialogResult.OK)
                 {
@@ -72,6 +70,9 @@ namespace FxControl
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            //FxControl.Properties.Settings.Default.config = "";
+            //FxControl.Properties.Settings.Default.fxlocation = "";
+            //FxControl.Properties.Settings.Default.Save();
             Control.CheckForIllegalCrossThreadCalls = false;
             fxselectlocation();
             configselectlocation();
@@ -83,11 +84,7 @@ namespace FxControl
         }
 
         private void timer1_Tick(object sender, EventArgs e)
-        { 
-            if (!oyunbasladı)
-            {
-                button1.BackColor = Color.Transparent;
-            }
+        {  
             for (int i = 0; i < listBox1.Items.Count; i++)
             {
                 if (DateTime.Now.ToString("HH:mm:ss") == listBox1.Items[i].ToString())
@@ -115,6 +112,7 @@ namespace FxControl
                 button5.Enabled = true;
                 button6.Enabled = true;
                 progressBar1.Value = 0;
+                button1.BackColor = Color.Transparent;
             }
 
         }
@@ -140,10 +138,11 @@ namespace FxControl
 
 
         }
+
         private void StopServer()
         {
-            _isFivemServerRunning = false; 
             _process.Kill();
+            _isFivemServerRunning = false;
         }
 
         private void OnRestart()
@@ -152,6 +151,7 @@ namespace FxControl
             Thread.Sleep(5000);
             StartServer();
         }
+
         public void CheckIfCrashed()
         {
             if (!_isFivemServerRunning) return; 
@@ -162,6 +162,7 @@ namespace FxControl
                 return;
             } 
         }
+
         private bool IsProcessRunning()
         {
             if (this._process == null)
@@ -180,6 +181,7 @@ namespace FxControl
 
             return true;
         }
+
         public void StartServer()
         {
             oyunbasladı = false;
@@ -207,6 +209,8 @@ namespace FxControl
                          "/citizen/ +exec server.cfg",         // /citizen/ +exec server.cfg
                 WorkingDirectory = FxControl.Properties.Settings.Default.config.Replace("\\server.cfg", "")                    // C:/FiveM/cfx-server-data-master
             };
+            startInfo.CreateNoWindow = true;
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             _process.StartInfo = startInfo;
@@ -216,9 +220,9 @@ namespace FxControl
             _process.BeginOutputReadLine();
             _isFivemServerRunning = true;
         } 
+
         private void button2_Click(object sender, EventArgs e)
         {
-            oyunbasladı = false;
             richTextBox1.Text = "";
             StopServer();
         }
@@ -273,7 +277,14 @@ namespace FxControl
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _process.Kill();
+            try
+            {
+                _process.Kill();
+            }
+            catch (Exception)
+            {
+                 
+            }
         }
     }
 }
