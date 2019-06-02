@@ -30,4 +30,3 @@ D:\Git\FxServerController\FxControl\obj\Debug\FxControl.pdb
 D:\Git\FxServerController\FxControl\bin\Debug\tr-TR\FxControl.resources.dll
 D:\Git\FxServerController\FxControl\obj\Debug\FxControl.Form1.tr-TR.resources
 D:\Git\FxServerController\FxControl\obj\Debug\tr-TR\FxControl.resources.dll
-D:\Git\FxServerController\FxControl\obj\Debug\FxControl.csprojAssemblyReference.cache
