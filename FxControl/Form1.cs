@@ -163,6 +163,8 @@ namespace FxControl
                 btnRestartServer.Enabled = true;
                 btnChangeServerLocation.Enabled = false;
                 btnChangeConfigLocation.Enabled = false;
+                cmbSelectLanguage.Enabled = false;
+                groupBox5.Enabled = true;
                 CheckIfCrashed();
             }
             else
@@ -172,6 +174,8 @@ namespace FxControl
                 btnRestartServer.Enabled = false;
                 btnChangeServerLocation.Enabled = true;
                 btnChangeConfigLocation.Enabled = true;
+                cmbSelectLanguage.Enabled = true;
+                groupBox5.Enabled = false;
                 progressBar1.Value = 0;
                 btnStartServer.BackColor = Color.Transparent;
             }
