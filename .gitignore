@@ -13,3 +13,7 @@ FxControl/obj/Debug/fr-FR/FxControl.resources.dll
 .vs/FxControl/v15/Server/sqlite3/storage.ide
 .vs/FxControl/v15/Server/sqlite3/storage.ide-shm
 .vs/FxControl/v15/Server/sqlite3/storage.ide-wal
+FxControl/bin/Debug/FxControl.exe
+FxControl/bin/Debug/FxControl.exe.config
+FxControl/bin/Debug/FxControl.pdb
+FxControl/obj/Debug/FxControl.csprojAssemblyReference.cache
