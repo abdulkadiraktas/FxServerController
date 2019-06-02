@@ -134,9 +134,6 @@ namespace FxControl
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Settings.Default.config = "";
-            //Settings.Default.fxlocation = "";
-            //Settings.Default.Save();
             dt = new DataTable();
             dt.Columns.Add("resource");
             CheckForIllegalCrossThreadCalls = false;
@@ -153,7 +150,7 @@ namespace FxControl
             {
                 if (DateTime.Now.ToString("HH:mm:ss") == lstBoxTiming.Items[i].ToString())
                 {
-                    lstBoxTiming.Items.Remove(lstBoxTiming.Items[i]);
+                    //lstBoxTiming.Items.Remove(lstBoxTiming.Items[i]);
                     timer1.Stop();
                     OnRestart();
                 }
@@ -286,9 +283,6 @@ namespace FxControl
                 }
                 else if (e.Data.Contains("Started resource"))
                 {
-                    //e.Data.Replace("started resource").Trim()
-                    //  dataGridView1.Rows.Add(e.Data.Replace("Started resource", "").Trim());
-                    //AddData(e.Data.Replace("Started resource", "").Trim());
                     Thread addDatathread = new Thread(() =>
                     AddData(e.Data.Replace("Started resource", "").Trim()));
                     addDatathread.Start();
@@ -451,10 +445,12 @@ namespace FxControl
             if (richTxtLogScreen.Visible)
             {
                 richTxtLogScreen.Hide();
+                Width -= 400;
             }
             else
             {
                 richTxtLogScreen.Show();
+                Width += 400;
             }
         }
 
