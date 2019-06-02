@@ -448,14 +448,19 @@ namespace FxControl
 
         private void BtnShowLogs_Click(object sender, EventArgs e)
         {
-
+            //465; 453
             if (richTxtLogScreen.Visible)
             {
                 richTxtLogScreen.Hide();
+                this.MinimumSize = new Size(465, 460);
+                this.MaximumSize = new Size(465, 860);
+                this.Size = new Size(465, 460);
             }
             else
             {
                 richTxtLogScreen.Show();
+                this.Size = new Size(829, 460);
+                this.MinimumSize = new Size(829, 460);
             }
         }
 

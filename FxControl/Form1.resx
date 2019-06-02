@@ -244,7 +244,7 @@
     <value>3, 103</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>458, 218</value>
+    <value>459, 218</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -352,7 +352,7 @@
     <value>3, 3</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>458, 100</value>
+    <value>459, 100</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -379,7 +379,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>464, 388</value>
+    <value>465, 331</value>
   </data>
   <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -823,7 +823,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>464, 388</value>
+    <value>464, 368</value>
   </data>
   <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1159,7 +1159,7 @@
     <value>446, 348</value>
   </data>
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>472, 394</value>
+    <value>473, 357</value>
   </data>
   <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1183,10 +1183,10 @@
     <value>Bottom</value>
   </data>
   <data name="progressBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 414</value>
+    <value>0, 385</value>
   </data>
   <data name="progressBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>812, 36</value>
+    <value>473, 36</value>
   </data>
   <data name="progressBar1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1201,19 +1201,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;progressBar1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="btnShowLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
   </data>
   <data name="btnShowLogs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 394</value>
+    <value>0, 357</value>
   </data>
   <data name="btnShowLogs.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="btnShowLogs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>812, 20</value>
+    <value>473, 28</value>
   </data>
   <data name="btnShowLogs.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -1231,19 +1231,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnShowLogs.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="richTxtLogScreen.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
   </data>
   <data name="richTxtLogScreen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 0</value>
+    <value>473, 0</value>
   </data>
   <data name="richTxtLogScreen.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="richTxtLogScreen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 394</value>
+    <value>340, 421</value>
   </data>
   <data name="richTxtLogScreen.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -1261,7 +1261,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;richTxtLogScreen.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1270,13 +1270,16 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>812, 450</value>
+    <value>813, 421</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>829, 869</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>469, 418</value>
+    <value>829, 460</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
