@@ -1,28 +1,25 @@
 # FxServerController
 
-New Feature :
+All Feature :
 
-Added resource list and search.
-https://forum.fivem.net/uploads/default/original/3X/8/5/85937189b6ca7f9048c3e7222886c213ce4b718e.png
+Server start/stop/restart
+Timing for restarting
+Logging system /optional in setting panel
+Clear cache folder /optional in setting panel
+Resource start/stop/restart
+Server resource list – stop / restart
+Server cache file refresh.
+Log screen hide/show
+Multi language : TR/EN/FR
 
-Start / Stop / Restart function for resource 
-https://forum.fivem.net/uploads/default/original/3X/4/0/409a2288f97bec6c69bb95279af72b51e30d75fe.png
+Screenshots : 
+https://forum.fivem.net/uploads/default/original/3X/b/1/b126a32b77b3434eb6181bdcf3b1c5d397411292.png
+https://forum.fivem.net/uploads/default/original/3X/6/d/6d77eca096d89ec2f90d8d8e3eea9a05408a7a8e.png
+https://forum.fivem.net/uploads/default/original/3X/6/1/6175c99e33dd6d9ed258e3520d3cf621743f37db.png
+https://forum.fivem.net/uploads/default/original/3X/d/a/dac4d0cf236566ad8661a98b75b2c71efe7fa0bf.png
 
-refresh server cache
-Video :https://www.youtube.com/watch?v=0kzQdvUSuy0&feature=youtu.be
 
-You can start, stop, and restart your server using this application. It also automatically restarts when your server shuts down. You can also automatically restart at any time.
-
-User manual
-Video : https://youtu.be/gMg1tX-HNzA
-
- Screenshots:
-http://prntscr.com/nwb4vh 
-
-http://prntscr.com/nwb4z5 
-
-http://prntscr.com/nwb531 
-
+Forum link : https://forum.fivem.net/t/release-fx-controller-windows
 
 Thank you @TanguyOrtegat
 
