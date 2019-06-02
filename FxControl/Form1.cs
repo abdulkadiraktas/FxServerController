@@ -1,10 +1,17 @@
 ﻿using FxControl.Properties;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,22 +31,37 @@ namespace FxControl
         public Form1()
         {
             InitializeComponent();
+            var dataSource = new List<Language>
+            {
+                new Language() { Name = "Français", Value = "fr-FR" },
+                new Language() { Name = "English", Value = "en-US" }
+            };
+            cmbSelectLanguage.DataSource = dataSource;
+            cmbSelectLanguage.DisplayMember = "Name";
+            cmbSelectLanguage.ValueMember = "Value";
+            for (var i = 0; i < dataSource.Count; i++)
+            {
+                if (dataSource[i].Value == Settings.Default.ApplicationLanguage)
+                {
+                    cmbSelectLanguage.SelectedIndex = i;
+                }
+            }
         }
 
         private void Fxselectlocation()
         {
-            if (string.IsNullOrWhiteSpace(Settings.Default.fxlocation))
+            if (string.IsNullOrWhiteSpace(Settings.Default.ServerExeLocation))
             {
                 OpenFileDialog fx = new OpenFileDialog
                 {
-                    Title = Resources.SelectServerExe,
+                    Title = "",
                     Filter = "FXServer|FXServer.exe"
                 };
                 if (fx.ShowDialog() == DialogResult.OK)
                 {
-                    Settings.Default.fxlocation = fx.FileName;
+                    Settings.Default.ServerExeLocation = fx.FileName;
                     Settings.Default.Save();
-                    txtfx.Text = Settings.Default.fxlocation;
+                    txtServerExeLocation.Text = Settings.Default.ServerExeLocation;
                 }
                 else
                 {
@@ -48,24 +70,24 @@ namespace FxControl
             }
             else
             {
-                txtfx.Text = Settings.Default.fxlocation;
+                txtServerExeLocation.Text = Settings.Default.ServerExeLocation;
             }
         }
 
         private void Configselectlocation()
         {
-            if (string.IsNullOrWhiteSpace(Settings.Default.config))
+            if (string.IsNullOrWhiteSpace(Settings.Default.ServerConfigLocation))
             {
                 OpenFileDialog conf = new OpenFileDialog
                 {
-                    Title = Resources.SelectServerCfg,
+                    Title = "",
                     Filter = "Config|server.cfg"
                 };
                 if (conf.ShowDialog() == DialogResult.OK)
                 {
-                    Settings.Default.config = conf.FileName;
+                    Settings.Default.ServerConfigLocation = conf.FileName;
                     Settings.Default.Save();
-                    txtconfig.Text = Settings.Default.config;
+                    txtServerCfgLocation.Text = Settings.Default.ServerConfigLocation;
                 }
                 else
                 {
@@ -74,7 +96,39 @@ namespace FxControl
             }
             else
             {
-                txtconfig.Text = Settings.Default.config;
+                txtServerCfgLocation.Text = Settings.Default.ServerConfigLocation;
+            }
+        }
+
+        private void SelectLogsLocation()
+        {
+            FolderBrowserDialog loglocation = new FolderBrowserDialog
+            {
+                SelectedPath = Settings.Default.ServerLogLocation,
+                ShowNewFolderButton = true,
+                Description = ""
+            };
+
+            if (loglocation.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.ServerLogLocation = loglocation.SelectedPath;
+                Settings.Default.Save();
+                txtServerLogsLocation.Text = loglocation.SelectedPath;
+            }
+        }
+
+        private void SetupServerLog()
+        {
+            if (string.IsNullOrWhiteSpace(Settings.Default.ServerLogLocation))
+            {
+                string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                Settings.Default.ServerLogLocation = path;
+                Settings.Default.Save();
+                txtServerLogsLocation.Text = Settings.Default.ServerLogLocation;
+            }
+            else
+            {
+                txtServerLogsLocation.Text = Settings.Default.ServerLogLocation;
             }
         }
 
@@ -88,7 +142,9 @@ namespace FxControl
             CheckForIllegalCrossThreadCalls = false;
             Fxselectlocation();
             Configselectlocation();
-            checkCache.Checked = Settings.Default.cache;
+            SetupServerLog();
+            chckBoxClearCache.Checked = Settings.Default.cache;
+            chckBoxEnableServerLogs.Checked = Settings.Default.EnableServerLogs;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -171,22 +227,19 @@ namespace FxControl
 
         public void StartServer()
         {
-            string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/Logs/";
-            if (!Directory.Exists(path))
+            string path = Settings.Default.ServerLogLocation + "/Logs/";
+            if (Settings.Default.EnableServerLogs && !Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
             ServerStarted = false;
-            string serverPath = Settings.Default.config.Replace("server.cfg", "");
+            string serverPath = Settings.Default.ServerConfigLocation.Replace("server.cfg", "");
             DirectoryInfo dir = new DirectoryInfo(@serverPath + "cache");
-            if (dir.Exists)
+            if (dir.Exists && chckBoxClearCache.Checked)
             {
                 try
                 {
-                    if (checkCache.Checked)
-                    {
-                        dir.Delete(true);
-                    }
+                    dir.Delete(true);
                 }
                 catch (Exception)
                 {
@@ -199,10 +252,10 @@ namespace FxControl
             var startInfo = new ProcessStartInfo
             {
                 WindowStyle = ProcessWindowStyle.Hidden,
-                FileName = Settings.Default.fxlocation,       // +set citizen_dir C:/FiveM/FXServer.exe
-                Arguments = "+set citizen_dir " + Settings.Default.fxlocation.Replace("FXServer.exe", "") + // C:/FiveM
+                FileName = Settings.Default.ServerExeLocation,       // +set citizen_dir C:/FiveM/FXServer.exe
+                Arguments = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + // C:/FiveM
                          "/citizen/ +exec server.cfg",         // /citizen/ +exec server.cfg
-                WorkingDirectory = Settings.Default.config.Replace("\\server.cfg", "")                    // C:/FiveM/cfx-server-data-master
+                WorkingDirectory = Settings.Default.ServerConfigLocation.Replace("\\server.cfg", "")                    // C:/FiveM/cfx-server-data-master
             };
             startInfo.CreateNoWindow = true;
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -239,8 +292,6 @@ namespace FxControl
                     Thread addDatathread = new Thread(() =>
                     AddData(e.Data.Replace("Started resource", "").Trim()));
                     addDatathread.Start();
-
-
                 }
                 if (!ServerStarted)
                 {
@@ -253,7 +304,10 @@ namespace FxControl
                         progressBar1.Maximum += 100;
                     }
                 }
-                File.AppendAllText(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/Logs/" + date + ".txt", e.Data.ToString() + "\n");
+                if (Settings.Default.EnableServerLogs)
+                {
+                    File.AppendAllText(Settings.Default.ServerLogLocation + "/Logs/" + date + ".txt", e.Data.ToString() + "\n");
+                }
             }
         }
 
@@ -266,9 +320,9 @@ namespace FxControl
 
         private void Button10_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBox1.Text) && !string.IsNullOrWhiteSpace(comboBox1.Text))
+            if (!string.IsNullOrWhiteSpace(txtSendCommand.Text) && !string.IsNullOrWhiteSpace(comboBox1.Text))
             {
-                Ress(comboBox1.Text, textBox1.Text);
+                Ress(comboBox1.Text, txtSendCommand.Text);
             }
         }
 
@@ -295,7 +349,7 @@ namespace FxControl
         {
             try
             {
-                ((DataTable)dataGridView1.DataSource).DefaultView.RowFilter = string.Format("resource like '%{0}%'", textBox2.Text.Trim().Replace("'", "''"));
+                ((DataTable)dataGridView1.DataSource).DefaultView.RowFilter = string.Format("resource like '%{0}%'", txtSearchResource.Text.Trim().Replace("'", "''"));
             }
             catch (Exception)
             {
@@ -324,14 +378,14 @@ namespace FxControl
 
         private void BtnChangeServerLocation_Click(object sender, EventArgs e)
         {
-            Settings.Default.fxlocation = null;
+            Settings.Default.ServerExeLocation = null;
             Settings.Default.Save();
             Fxselectlocation();
         }
 
         private void BtnChangeConfigLocation_Click(object sender, EventArgs e)
         {
-            Settings.Default.config = null;
+            Settings.Default.ServerConfigLocation = null;
             Settings.Default.Save();
             Configselectlocation();
         }
@@ -380,11 +434,51 @@ namespace FxControl
             OnRestart();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void ChckBoxClearCache_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.cache = checkCache.Checked;
+            Settings.Default.cache = chckBoxClearCache.Checked;
             Settings.Default.Save();
+        }
 
+        private void BtnChangeServerLogsLocation_Click(object sender, EventArgs e)
+        {
+            SelectLogsLocation();
+        }
+
+        private void BtnShowLogs_Click(object sender, EventArgs e)
+        {
+
+            if (richTxtLogScreen.Visible)
+            {
+                richTxtLogScreen.Hide();
+            }
+            else
+            {
+                richTxtLogScreen.Show();
+            }
+        }
+
+        private void ChckBoxEnableServerLogs_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.EnableServerLogs = chckBoxEnableServerLogs.Checked;
+            Settings.Default.Save();
+        }
+
+        private void CmbSelectLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbSelectLanguage.SelectedValue == null)
+            {
+                return;
+            }
+            ComboBox cmb = (ComboBox)sender;
+            string selectedValue = (string)cmb.SelectedValue;
+            if (selectedValue != Settings.Default.ApplicationLanguage)
+            {
+                Settings.Default.ApplicationLanguage = selectedValue;
+                Settings.Default.Save();
+                Application.Restart();
+                Environment.Exit(0);
+            }
         }
 
         private Task AddData(string data)
