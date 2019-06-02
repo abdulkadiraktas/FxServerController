@@ -134,10 +134,7 @@ namespace FxControl
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-            //Settings.Default.config = "";
-            //Settings.Default.fxlocation = "";
-            //Settings.Default.Save();
+        { 
             dt = new DataTable();
             dt.Columns.Add("resource");
             CheckForIllegalCrossThreadCalls = false;
@@ -153,8 +150,7 @@ namespace FxControl
             for (int i = 0; i < lstBoxTiming.Items.Count; i++)
             {
                 if (DateTime.Now.ToString("HH:mm:ss") == lstBoxTiming.Items[i].ToString())
-                {
-                    lstBoxTiming.Items.Remove(lstBoxTiming.Items[i]);
+                { 
                     timer1.Stop();
                     OnRestart();
                 }
