@@ -46,5 +46,17 @@ namespace FxControl.Properties {
                 this["config"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cache {
+            get {
+                return ((bool)(this["cache"]));
+            }
+            set {
+                this["cache"] = value;
+            }
+        }
     }
 }

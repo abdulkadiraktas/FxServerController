@@ -66,6 +66,8 @@
             this.button10 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.checkCache = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -80,6 +82,7 @@
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -90,21 +93,20 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabControl1.MinimumSize = new System.Drawing.Size(446, 348);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(595, 447);
+            this.tabControl1.Size = new System.Drawing.Size(446, 348);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(587, 418);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(438, 322);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Control";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -117,21 +119,18 @@
             this.groupBox2.Controls.Add(this.btnAddTimeToList);
             this.groupBox2.Controls.Add(this.dateTimePicker1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(4, 127);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(3, 103);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(579, 287);
+            this.groupBox2.Size = new System.Drawing.Size(432, 216);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Otomation";
             // 
             // btnClearTimerList
             // 
-            this.btnClearTimerList.Location = new System.Drawing.Point(8, 206);
-            this.btnClearTimerList.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClearTimerList.Location = new System.Drawing.Point(6, 167);
             this.btnClearTimerList.Name = "btnClearTimerList";
-            this.btnClearTimerList.Size = new System.Drawing.Size(117, 47);
+            this.btnClearTimerList.Size = new System.Drawing.Size(88, 38);
             this.btnClearTimerList.TabIndex = 4;
             this.btnClearTimerList.Text = "Clear List";
             this.btnClearTimerList.UseVisualStyleBackColor = true;
@@ -139,10 +138,9 @@
             // 
             // btnDeleteSelectedTime
             // 
-            this.btnDeleteSelectedTime.Location = new System.Drawing.Point(8, 129);
-            this.btnDeleteSelectedTime.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteSelectedTime.Location = new System.Drawing.Point(6, 105);
             this.btnDeleteSelectedTime.Name = "btnDeleteSelectedTime";
-            this.btnDeleteSelectedTime.Size = new System.Drawing.Size(117, 47);
+            this.btnDeleteSelectedTime.Size = new System.Drawing.Size(88, 38);
             this.btnDeleteSelectedTime.TabIndex = 3;
             this.btnDeleteSelectedTime.Text = "Delete Selected";
             this.btnDeleteSelectedTime.UseVisualStyleBackColor = true;
@@ -151,20 +149,17 @@
             // lstBoxTiming
             // 
             this.lstBoxTiming.FormattingEnabled = true;
-            this.lstBoxTiming.ItemHeight = 16;
-            this.lstBoxTiming.Location = new System.Drawing.Point(133, 23);
-            this.lstBoxTiming.Margin = new System.Windows.Forms.Padding(4);
+            this.lstBoxTiming.Location = new System.Drawing.Point(100, 19);
             this.lstBoxTiming.Name = "lstBoxTiming";
             this.lstBoxTiming.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstBoxTiming.Size = new System.Drawing.Size(192, 228);
+            this.lstBoxTiming.Size = new System.Drawing.Size(145, 186);
             this.lstBoxTiming.TabIndex = 2;
             // 
             // btnAddTimeToList
             // 
-            this.btnAddTimeToList.Location = new System.Drawing.Point(8, 55);
-            this.btnAddTimeToList.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddTimeToList.Location = new System.Drawing.Point(6, 45);
             this.btnAddTimeToList.Name = "btnAddTimeToList";
-            this.btnAddTimeToList.Size = new System.Drawing.Size(117, 47);
+            this.btnAddTimeToList.Size = new System.Drawing.Size(88, 38);
             this.btnAddTimeToList.TabIndex = 1;
             this.btnAddTimeToList.Text = "Add List";
             this.btnAddTimeToList.UseVisualStyleBackColor = true;
@@ -173,11 +168,10 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker1.Location = new System.Drawing.Point(8, 23);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePicker1.Location = new System.Drawing.Point(6, 19);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.ShowUpDown = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(116, 22);
+            this.dateTimePicker1.Size = new System.Drawing.Size(88, 20);
             this.dateTimePicker1.TabIndex = 0;
             // 
             // groupBox1
@@ -186,11 +180,9 @@
             this.groupBox1.Controls.Add(this.btnStopServer);
             this.groupBox1.Controls.Add(this.btnStartServer);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(4, 4);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(579, 123);
+            this.groupBox1.Size = new System.Drawing.Size(432, 100);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Server Panel";
@@ -201,10 +193,9 @@
             this.btnRestartServer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Coral;
             this.btnRestartServer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
             this.btnRestartServer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRestartServer.Location = new System.Drawing.Point(251, 23);
-            this.btnRestartServer.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRestartServer.Location = new System.Drawing.Point(344, 19);
             this.btnRestartServer.Name = "btnRestartServer";
-            this.btnRestartServer.Size = new System.Drawing.Size(109, 76);
+            this.btnRestartServer.Size = new System.Drawing.Size(82, 62);
             this.btnRestartServer.TabIndex = 2;
             this.btnRestartServer.Text = "Restart";
             this.btnRestartServer.UseVisualStyleBackColor = true;
@@ -216,10 +207,9 @@
             this.btnStopServer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Coral;
             this.btnStopServer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
             this.btnStopServer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStopServer.Location = new System.Drawing.Point(133, 23);
-            this.btnStopServer.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStopServer.Location = new System.Drawing.Point(177, 19);
             this.btnStopServer.Name = "btnStopServer";
-            this.btnStopServer.Size = new System.Drawing.Size(109, 76);
+            this.btnStopServer.Size = new System.Drawing.Size(82, 62);
             this.btnStopServer.TabIndex = 1;
             this.btnStopServer.Text = "Stop";
             this.btnStopServer.UseVisualStyleBackColor = true;
@@ -231,10 +221,9 @@
             this.btnStartServer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Coral;
             this.btnStartServer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
             this.btnStartServer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStartServer.Location = new System.Drawing.Point(8, 23);
-            this.btnStartServer.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStartServer.Location = new System.Drawing.Point(6, 19);
             this.btnStartServer.Name = "btnStartServer";
-            this.btnStartServer.Size = new System.Drawing.Size(117, 76);
+            this.btnStartServer.Size = new System.Drawing.Size(88, 62);
             this.btnStartServer.TabIndex = 0;
             this.btnStartServer.Text = "Start";
             this.btnStartServer.UseVisualStyleBackColor = true;
@@ -242,13 +231,13 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox8);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.groupBox3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(587, 418);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(438, 322);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Setting";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -258,21 +247,18 @@
             this.groupBox4.Controls.Add(this.btnChangeConfigLocation);
             this.groupBox4.Controls.Add(this.txtconfig);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Location = new System.Drawing.Point(4, 127);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox4.Location = new System.Drawing.Point(3, 103);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(579, 123);
+            this.groupBox4.Size = new System.Drawing.Size(432, 100);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Config file location";
             // 
             // btnChangeConfigLocation
             // 
-            this.btnChangeConfigLocation.Location = new System.Drawing.Point(8, 55);
-            this.btnChangeConfigLocation.Margin = new System.Windows.Forms.Padding(4);
+            this.btnChangeConfigLocation.Location = new System.Drawing.Point(6, 45);
             this.btnChangeConfigLocation.Name = "btnChangeConfigLocation";
-            this.btnChangeConfigLocation.Size = new System.Drawing.Size(555, 44);
+            this.btnChangeConfigLocation.Size = new System.Drawing.Size(416, 36);
             this.btnChangeConfigLocation.TabIndex = 1;
             this.btnChangeConfigLocation.Text = "Change config location";
             this.btnChangeConfigLocation.UseVisualStyleBackColor = true;
@@ -281,10 +267,9 @@
             // txtconfig
             // 
             this.txtconfig.Enabled = false;
-            this.txtconfig.Location = new System.Drawing.Point(8, 23);
-            this.txtconfig.Margin = new System.Windows.Forms.Padding(4);
+            this.txtconfig.Location = new System.Drawing.Point(6, 19);
             this.txtconfig.Name = "txtconfig";
-            this.txtconfig.Size = new System.Drawing.Size(553, 22);
+            this.txtconfig.Size = new System.Drawing.Size(416, 20);
             this.txtconfig.TabIndex = 0;
             // 
             // groupBox3
@@ -292,21 +277,18 @@
             this.groupBox3.Controls.Add(this.btnChangeServerLocation);
             this.groupBox3.Controls.Add(this.txtfx);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox3.Location = new System.Drawing.Point(4, 4);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(579, 123);
+            this.groupBox3.Size = new System.Drawing.Size(432, 100);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Server file location";
             // 
             // btnChangeServerLocation
             // 
-            this.btnChangeServerLocation.Location = new System.Drawing.Point(8, 55);
-            this.btnChangeServerLocation.Margin = new System.Windows.Forms.Padding(4);
+            this.btnChangeServerLocation.Location = new System.Drawing.Point(6, 45);
             this.btnChangeServerLocation.Name = "btnChangeServerLocation";
-            this.btnChangeServerLocation.Size = new System.Drawing.Size(555, 44);
+            this.btnChangeServerLocation.Size = new System.Drawing.Size(416, 36);
             this.btnChangeServerLocation.TabIndex = 1;
             this.btnChangeServerLocation.Text = "Change server location";
             this.btnChangeServerLocation.UseVisualStyleBackColor = true;
@@ -315,20 +297,18 @@
             // txtfx
             // 
             this.txtfx.Enabled = false;
-            this.txtfx.Location = new System.Drawing.Point(8, 23);
-            this.txtfx.Margin = new System.Windows.Forms.Padding(4);
+            this.txtfx.Location = new System.Drawing.Point(6, 19);
             this.txtfx.Name = "txtfx";
-            this.txtfx.Size = new System.Drawing.Size(553, 22);
+            this.txtfx.Size = new System.Drawing.Size(416, 20);
             this.txtfx.TabIndex = 0;
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.richTxtLogScreen);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(587, 418);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(438, 322);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Logs";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -336,11 +316,10 @@
             // richTxtLogScreen
             // 
             this.richTxtLogScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTxtLogScreen.Location = new System.Drawing.Point(4, 4);
-            this.richTxtLogScreen.Margin = new System.Windows.Forms.Padding(4);
+            this.richTxtLogScreen.Location = new System.Drawing.Point(3, 3);
             this.richTxtLogScreen.Name = "richTxtLogScreen";
             this.richTxtLogScreen.ReadOnly = true;
-            this.richTxtLogScreen.Size = new System.Drawing.Size(579, 410);
+            this.richTxtLogScreen.Size = new System.Drawing.Size(432, 316);
             this.richTxtLogScreen.TabIndex = 0;
             this.richTxtLogScreen.Text = "";
             // 
@@ -348,11 +327,10 @@
             // 
             this.tabPage4.Controls.Add(this.groupBox6);
             this.tabPage4.Controls.Add(this.groupBox5);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Size = new System.Drawing.Size(587, 418);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(438, 322);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Resource Panel";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -362,11 +340,9 @@
             this.groupBox6.Controls.Add(this.dataGridView1);
             this.groupBox6.Controls.Add(this.groupBox7);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox6.Location = new System.Drawing.Point(4, 141);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox6.Location = new System.Drawing.Point(3, 114);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Size = new System.Drawing.Size(563, 273);
+            this.groupBox6.Size = new System.Drawing.Size(422, 205);
             this.groupBox6.TabIndex = 4;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Resource List";
@@ -382,14 +358,13 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(4, 79);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 65);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(555, 190);
+            this.dataGridView1.Size = new System.Drawing.Size(416, 137);
             this.dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -399,19 +374,19 @@
             this.stopToolStripMenuItem,
             this.restartToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 52);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(111, 48);
             // 
             // stopToolStripMenuItem
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(124, 24);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.stopToolStripMenuItem.Text = "Stop";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.StopToolStripMenuItem_Click);
             // 
             // restartToolStripMenuItem
             // 
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(124, 24);
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.restartToolStripMenuItem.Text = "Restart";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.RestartToolStripMenuItem_Click);
             // 
@@ -420,31 +395,27 @@
             this.groupBox7.Controls.Add(this.textBox2);
             this.groupBox7.Controls.Add(this.label1);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox7.Location = new System.Drawing.Point(4, 19);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox7.Location = new System.Drawing.Point(3, 16);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox7.Size = new System.Drawing.Size(555, 60);
+            this.groupBox7.Size = new System.Drawing.Size(416, 49);
             this.groupBox7.TabIndex = 3;
             this.groupBox7.TabStop = false;
             // 
             // textBox2
             // 
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox2.Location = new System.Drawing.Point(4, 34);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox2.Location = new System.Drawing.Point(3, 26);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(547, 22);
+            this.textBox2.Size = new System.Drawing.Size(410, 20);
             this.textBox2.TabIndex = 2;
             this.textBox2.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 12);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(6, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 17);
+            this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Search";
             // 
@@ -455,11 +426,9 @@
             this.groupBox5.Controls.Add(this.textBox1);
             this.groupBox5.Controls.Add(this.button10);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox5.Location = new System.Drawing.Point(4, 4);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox5.Location = new System.Drawing.Point(3, 3);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox5.Size = new System.Drawing.Size(579, 137);
+            this.groupBox5.Size = new System.Drawing.Size(432, 111);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Command";
@@ -470,10 +439,9 @@
             this.button9.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Coral;
             this.button9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Location = new System.Drawing.Point(288, 23);
-            this.button9.Margin = new System.Windows.Forms.Padding(4);
+            this.button9.Location = new System.Drawing.Point(216, 19);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(267, 94);
+            this.button9.Size = new System.Drawing.Size(200, 76);
             this.button9.TabIndex = 4;
             this.button9.Text = "Refresh";
             this.button9.UseVisualStyleBackColor = true;
@@ -487,26 +455,23 @@
             "start",
             "stop",
             "restart"});
-            this.comboBox1.Location = new System.Drawing.Point(8, 23);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox1.Location = new System.Drawing.Point(6, 19);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(259, 24);
+            this.comboBox1.Size = new System.Drawing.Size(195, 21);
             this.comboBox1.TabIndex = 2;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(8, 57);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(6, 46);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(259, 22);
+            this.textBox1.Size = new System.Drawing.Size(195, 20);
             this.textBox1.TabIndex = 0;
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(8, 89);
-            this.button10.Margin = new System.Windows.Forms.Padding(4);
+            this.button10.Location = new System.Drawing.Point(6, 72);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(260, 28);
+            this.button10.Size = new System.Drawing.Size(195, 23);
             this.button10.TabIndex = 1;
             this.button10.Text = "Send Command";
             this.button10.UseVisualStyleBackColor = true;
@@ -520,20 +485,42 @@
             // progressBar1
             // 
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(0, 447);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(4);
+            this.progressBar1.Location = new System.Drawing.Point(0, 345);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(595, 44);
+            this.progressBar1.Size = new System.Drawing.Size(446, 36);
             this.progressBar1.TabIndex = 6;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.checkCache);
+            this.groupBox8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox8.Location = new System.Drawing.Point(3, 203);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(432, 74);
+            this.groupBox8.TabIndex = 2;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Cache";
+            // 
+            // checkCache
+            // 
+            this.checkCache.AutoSize = true;
+            this.checkCache.Location = new System.Drawing.Point(6, 19);
+            this.checkCache.Name = "checkCache";
+            this.checkCache.Size = new System.Drawing.Size(112, 17);
+            this.checkCache.TabIndex = 0;
+            this.checkCache.Text = "Clear cache folder";
+            this.checkCache.UseVisualStyleBackColor = true;
+            this.checkCache.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(595, 491);
+            this.ClientSize = new System.Drawing.Size(446, 381);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.progressBar1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximumSize = new System.Drawing.Size(462, 870);
+            this.MinimumSize = new System.Drawing.Size(462, 420);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FX Controller";
@@ -557,6 +544,8 @@
             this.groupBox7.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -600,6 +589,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.CheckBox checkCache;
     }
 }
 

@@ -85,11 +85,10 @@ namespace FxControl
             //Settings.Default.Save();
             dt = new DataTable();
             dt.Columns.Add("resource");
-
-
             CheckForIllegalCrossThreadCalls = false;
             Fxselectlocation();
             Configselectlocation();
+            checkCache.Checked = Settings.Default.cache;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -184,7 +183,10 @@ namespace FxControl
             {
                 try
                 {
-                    dir.Delete(true);
+                    if (checkCache.Checked)
+                    {
+                        dir.Delete(true);
+                    }
                 }
                 catch (Exception)
                 {
@@ -376,6 +378,13 @@ namespace FxControl
         {
             richTxtLogScreen.Text = string.Empty;
             OnRestart();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.cache = checkCache.Checked;
+            Settings.Default.Save();
+
         }
 
         private Task AddData(string data)
