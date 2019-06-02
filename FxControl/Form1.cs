@@ -34,7 +34,8 @@ namespace FxControl
             var dataSource = new List<Language>
             {
                 new Language() { Name = "Français", Value = "fr-FR" },
-                new Language() { Name = "English", Value = "en-US" }
+                new Language() { Name = "English", Value = "en-US" },
+                new Language() { Name = "Türkçe", Value = "tr-TR" }
             };
             cmbSelectLanguage.DataSource = dataSource;
             cmbSelectLanguage.DisplayMember = "Name";
@@ -471,13 +472,19 @@ namespace FxControl
                 return;
             }
             ComboBox cmb = (ComboBox)sender;
-            string selectedValue = (string)cmb.SelectedValue;
-            if (selectedValue != Settings.Default.ApplicationLanguage)
+            try
             {
-                Settings.Default.ApplicationLanguage = selectedValue;
-                Settings.Default.Save();
-                Application.Restart();
-                Environment.Exit(0);
+                string selectedValue = (string)cmb.SelectedValue;
+                if (selectedValue != Settings.Default.ApplicationLanguage)
+                {
+                    Settings.Default.ApplicationLanguage = selectedValue;
+                    Settings.Default.Save();
+                    Application.Restart();
+                    Environment.Exit(0);
+                }
+            }
+            catch (Exception)
+            { 
             }
         }
 

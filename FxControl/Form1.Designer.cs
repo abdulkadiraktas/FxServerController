@@ -455,9 +455,9 @@ namespace FxControl
             this.AcceptButton = this.btnAddTimeToList;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.richTxtLogScreen);
             this.Controls.Add(this.btnShowLogs);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.progressBar1);
             this.Name = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -528,9 +528,9 @@ namespace FxControl
         private System.Windows.Forms.TextBox txtServerLogsLocation;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnShowLogs;
-        private System.Windows.Forms.RichTextBox richTxtLogScreen;
         private System.Windows.Forms.Label lblSelectLanguage;
         private System.Windows.Forms.ComboBox cmbSelectLanguage;
+        private System.Windows.Forms.RichTextBox richTxtLogScreen;
     }
 }
 
