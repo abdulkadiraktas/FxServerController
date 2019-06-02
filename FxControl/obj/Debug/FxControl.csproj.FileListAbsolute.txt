@@ -13,7 +13,6 @@ D:\Git\FxServerController\FxControl\bin\Debug\FxControl.exe
 D:\Git\FxServerController\FxControl\bin\Debug\FxControl.pdb
 D:\Git\FxServerController\FxControl\bin\Debug\en-US\FxControl.resources.dll
 D:\Git\FxServerController\FxControl\bin\Debug\fr-FR\FxControl.resources.dll
-D:\Git\FxServerController\FxControl\obj\Debug\FxControl.csprojAssemblyReference.cache
 D:\Git\FxServerController\FxControl\obj\Debug\FxControl.Form1.resources
 D:\Git\FxServerController\FxControl\obj\Debug\FxControl.Properties.Resources.resources
 D:\Git\FxServerController\FxControl\obj\Debug\FxControl.Properties.Resources.en-US.resources
@@ -24,3 +23,4 @@ D:\Git\FxServerController\FxControl\obj\Debug\en-US\FxControl.resources.dll
 D:\Git\FxServerController\FxControl\obj\Debug\fr-FR\FxControl.resources.dll
 D:\Git\FxServerController\FxControl\obj\Debug\FxControl.exe
 D:\Git\FxServerController\FxControl\obj\Debug\FxControl.pdb
+D:\Git\FxServerController\FxControl\obj\Debug\FxControl.csprojAssemblyReference.cache
