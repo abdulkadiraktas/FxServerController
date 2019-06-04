@@ -2,7 +2,7 @@
 
 ## All Feature :
 
--Server start/stop/restart
+- Server start/stop/restart
 - Timing for restarting
 - Logging system /optional in setting panel
 - Clear cache folder /optional in setting panel
