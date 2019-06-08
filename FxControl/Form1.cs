@@ -134,7 +134,7 @@ namespace FxControl
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        { 
+        {
             dt = new DataTable();
             dt.Columns.Add("resource");
             CheckForIllegalCrossThreadCalls = false;
@@ -148,10 +148,10 @@ namespace FxControl
         private void Timer1_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < lstBoxTiming.Items.Count; i++)
-            {
+            { 
                 if (DateTime.Now.ToString("HH:mm:ss") == lstBoxTiming.Items[i].ToString())
-                { 
-                    timer1.Stop();
+                {
+                    timer1.Stop(); 
                     OnRestart();
                 }
             }
@@ -184,9 +184,16 @@ namespace FxControl
 
         private void StopServer()
         {
-            dt.Clear();
-            _process.Kill();
-            _isFivemServerRunning = false;
+            try
+            {
+                dt.Clear();
+                _process.Kill();
+                _isFivemServerRunning = false;
+
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void OnRestart()
@@ -194,6 +201,7 @@ namespace FxControl
             StopServer();
             Thread.Sleep(5000);
             StartServer();
+            timer1.Start();
         }
 
         public void CheckIfCrashed()
@@ -284,6 +292,11 @@ namespace FxControl
                     progressBar1.Value = progressBar1.Maximum;
                     btnStartServer.BackColor = Color.Green;
 
+                }
+                else if (e.Data.Contains("Couldn't") || e.Data.Contains("Error"))
+                {
+                    Invoke(new Action(() => errorText.AppendText(Environment.NewLine + e.Data)));
+                    Invoke(new Action(() => errorText.ScrollToCaret()));
                 }
                 else if (e.Data.Contains("Started resource"))
                 {
@@ -489,7 +502,7 @@ namespace FxControl
                 }
             }
             catch (Exception)
-            { 
+            {
             }
         }
 

@@ -78,6 +78,8 @@ namespace FxControl
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnShowLogs = new System.Windows.Forms.Button();
             this.richTxtLogScreen = new System.Windows.Forms.RichTextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.errorText = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -91,6 +93,7 @@ namespace FxControl
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -98,6 +101,7 @@ namespace FxControl
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage3);
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -450,6 +454,18 @@ namespace FxControl
             this.richTxtLogScreen.Name = "richTxtLogScreen";
             this.richTxtLogScreen.ReadOnly = true;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.errorText);
+            resources.ApplyResources(this.tabPage3, "tabPage3");
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // errorText
+            // 
+            resources.ApplyResources(this.errorText, "errorText");
+            this.errorText.Name = "errorText";
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnAddTimeToList;
@@ -479,6 +495,7 @@ namespace FxControl
             this.groupBox7.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -531,6 +548,8 @@ namespace FxControl
         private System.Windows.Forms.Label lblSelectLanguage;
         private System.Windows.Forms.ComboBox cmbSelectLanguage;
         private System.Windows.Forms.RichTextBox richTxtLogScreen;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.RichTextBox errorText;
     }
 }
 
