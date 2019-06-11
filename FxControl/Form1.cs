@@ -151,6 +151,7 @@ namespace FxControl
             SetupServerLog();
             chckBoxClearCache.Checked = Settings.Default.cache;
             chckBoxEnableServerLogs.Checked = Settings.Default.EnableServerLogs;
+            txtServerIp.Text = Settings.Default.ServerIP;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -585,6 +586,12 @@ namespace FxControl
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Settings.Default.ServerIP = txtServerIp.Text;
+            Settings.Default.Save(); 
+        }
+
         private Task addPlayer(string data, string id, string ping)
         {
             DataRow row = dt2.NewRow();
@@ -611,7 +618,7 @@ namespace FxControl
                 string name, id, ping;
                 try
                 {
-                    var json = wc.DownloadString("http://localhost:30120/players.json");
+                    var json = wc.DownloadString(txtServerIp.Text + "/players.json");
                     JArray a = JArray.Parse(json);
                     for (int i = 0; i < a.Count; i++)
                     {

@@ -90,6 +90,9 @@ namespace FxControl
             this.kickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.banToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.txtServerIp = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -262,6 +265,9 @@ namespace FxControl
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtServerIp);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.txtServerLogsLocation);
             this.groupBox3.Controls.Add(this.btnChangeServerLogsLocation);
             this.groupBox3.Controls.Add(this.label3);
@@ -562,6 +568,23 @@ namespace FxControl
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // txtServerIp
+            // 
+            resources.ApplyResources(this.txtServerIp, "txtServerIp");
+            this.txtServerIp.Name = "txtServerIp";
+            // 
+            // button2
+            // 
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Name = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnAddTimeToList;
@@ -662,6 +685,9 @@ namespace FxControl
         private System.Windows.Forms.ToolStripMenuItem kickToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem banToolStripMenuItem;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtServerIp;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label4;
     }
 }
 
