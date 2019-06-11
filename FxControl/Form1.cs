@@ -10,11 +10,14 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace FxControl
 {
@@ -22,7 +25,8 @@ namespace FxControl
     {
         private Process _process;
 
-        DataTable dt;
+        DataTable dt, dt2;
+        int count;
 
         private Boolean _isFivemServerRunning, ServerStarted;
 
@@ -136,7 +140,11 @@ namespace FxControl
         private void Form1_Load(object sender, EventArgs e)
         {
             dt = new DataTable();
+            dt2 = new DataTable();
             dt.Columns.Add("resource");
+            dt2.Columns.Add("name");
+            dt2.Columns.Add("id");
+            dt2.Columns.Add("ping");
             CheckForIllegalCrossThreadCalls = false;
             Fxselectlocation();
             Configselectlocation();
@@ -148,10 +156,10 @@ namespace FxControl
         private void Timer1_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < lstBoxTiming.Items.Count; i++)
-            { 
+            {
                 if (DateTime.Now.ToString("HH:mm:ss") == lstBoxTiming.Items[i].ToString())
                 {
-                    timer1.Stop(); 
+                    timer1.Stop();
                     OnRestart();
                 }
             }
@@ -166,6 +174,15 @@ namespace FxControl
                 cmbSelectLanguage.Enabled = false;
                 groupBox5.Enabled = true;
                 CheckIfCrashed();
+                count++;
+                if (count == 10)
+                {
+                    count = 0;
+                    Thread addDatathread = new Thread(async () =>
+                    await serverInfo());
+                    addDatathread.Start();
+                    Thread.Sleep(500);
+                }
             }
             else
             {
@@ -186,10 +203,16 @@ namespace FxControl
         {
             try
             {
-                dt.Clear();
+                count = 11;
+                for (int i = 0; i < dataGridView2.RowCount; i++)
+                {
+                    Ress("clientkick", dataGridView2.Rows[i].Cells[1].Value.ToString(), "Sunucu Bakimda");
+                }
+                Thread.Sleep(1000);
+                count = 0;
                 _process.Kill();
                 _isFivemServerRunning = false;
-
+                dt.Clear();
             }
             catch (Exception)
             {
@@ -325,10 +348,10 @@ namespace FxControl
             }
         }
 
-        private void Ress(string status, string resourcename)
+        private void Ress(string status, string resourcename, string reason)
         {
             StreamWriter myStreamWriter = _process.StandardInput;
-            myStreamWriter.WriteLine(status + " " + resourcename);
+            myStreamWriter.WriteLine(status + " " + resourcename + " " + reason);
             myStreamWriter.Flush();
         }
 
@@ -336,7 +359,7 @@ namespace FxControl
         {
             if (!string.IsNullOrWhiteSpace(txtSendCommand.Text) && !string.IsNullOrWhiteSpace(comboBox1.Text))
             {
-                Ress(comboBox1.Text, txtSendCommand.Text);
+                Ress(comboBox1.Text, txtSendCommand.Text, "");
             }
         }
 
@@ -379,14 +402,14 @@ namespace FxControl
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                Ress("stop", dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                Ress("stop", dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), "");
                 dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
             }
         }
 
         private void RestartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Ress("restart", dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            Ress("restart", dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), "");
             dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
         }
 
@@ -514,5 +537,104 @@ namespace FxControl
             dataGridView1.DataSource = dt;
             return Task.CompletedTask;
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ((DataTable)dataGridView2.DataSource).DefaultView.RowFilter = string.Format("name like '%{0}%'", txtPlayerSearch.Text.Trim().Replace("'", "''"));
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void kickToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string reason;
+            reason = Microsoft.VisualBasic.Interaction.InputBox("Please write reason", "Kick Reason", "");
+            if (reason.Length > 5)
+            {
+                Ress("clientkick", dataGridView2.SelectedRows[0].Cells[1].Value.ToString(), reason);
+            }
+        }
+
+        private void banToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            allKick();
+        }
+
+        private void allKick()
+        {
+            DialogResult allKick = new DialogResult();
+            allKick = MessageBox.Show("Kick all users?", "Warning", MessageBoxButtons.YesNo);
+
+            if (allKick == DialogResult.Yes)
+            {
+                count = 11;
+                for (int i = 0; i < dataGridView2.RowCount; i++)
+                {
+                    Ress("clientkick", dataGridView2.Rows[i].Cells[1].Value.ToString(), "Sunucu Bakimda");
+                }
+                count = 0;
+            }
+        }
+
+        private Task addPlayer(string data, string id, string ping)
+        {
+            DataRow row = dt2.NewRow();
+            row["name"] = data;
+            row["id"] = id;
+            row["ping"] = ping;
+            dt2.Rows.Add(row);
+            dataGridView2.DataSource = dt2;
+            return Task.CompletedTask;
+        }
+
+        private Task serverInfo()
+        {
+            try
+            {
+                dt2.Clear();
+
+            }
+            catch (Exception)
+            {
+            }
+            using (WebClient wc = new WebClient())
+            {
+                string name, id, ping;
+                try
+                {
+                    var json = wc.DownloadString("http://localhost:30120/players.json");
+                    JArray a = JArray.Parse(json);
+                    for (int i = 0; i < a.Count; i++)
+                    {
+                        name = a[i]["name"].ToString();
+                        id = a[i]["id"].ToString();
+                        ping = a[i]["ping"].ToString();
+                        Thread addPlayerDatathread = new Thread(() =>
+                        addPlayer(name, id, ping));
+                        addPlayerDatathread.Start();
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+
+            }
+            //http://35.204.151.166:30120/info.json
+            //http://35.204.151.166:30120/players.json
+
+            return Task.CompletedTask;
+        }
+
+
     }
 }
