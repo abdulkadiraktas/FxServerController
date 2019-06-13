@@ -140,6 +140,16 @@ namespace FxControl
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            MessageBox.Show(Settings.Default.OneSyncCheck.ToString());
+            if (Settings.Default.OneSyncCheck)
+            {
+                oneSyncCheck.Checked = true;
+            }
+            else
+            {
+                oneSyncCheck.Checked = true;
+                oneSyncCheck.Checked = false;
+            }
             dt = new DataTable();
             dt2 = new DataTable();
             dt.Columns.Add("resource");
@@ -154,14 +164,6 @@ namespace FxControl
             chckBoxClearCache.Checked = Settings.Default.cache;
             chckBoxEnableServerLogs.Checked = Settings.Default.EnableServerLogs;
             txtServerIp.Text = Settings.Default.ServerIP;
-            if (Settings.Default.OneSyncCheck)
-            {
-                oneSyncCheck.Checked = true;
-            }
-            else
-            {
-                oneSyncCheck.Checked = false;
-            }
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -353,7 +355,14 @@ namespace FxControl
                 }
                 if (Settings.Default.EnableServerLogs)
                 {
-                    File.AppendAllText(Settings.Default.ServerLogLocation + "/Logs/" + date + ".txt", e.Data.ToString() + "\n");
+                    try
+                    {
+                        File.AppendAllText(Settings.Default.ServerLogLocation + "/Logs/" + date + ".txt", e.Data.ToString() + "\n");
+
+                    }
+                    catch (Exception)
+                    { 
+                    }
                 }
             }
         }
@@ -631,7 +640,7 @@ namespace FxControl
             if (oneSyncCheck.Checked)
             {
                 Settings.Default.OneSyncCheck = true;
-                argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec server.cfg + set onesync_enabled 1";
+                argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec server.cfg +set onesync_enabled 1";
             }
             else
             {
