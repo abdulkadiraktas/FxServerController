@@ -106,5 +106,17 @@ namespace FxControl.Properties {
                 this["ServerIP"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OneSyncCheck {
+            get {
+                return ((bool)(this["OneSyncCheck"]));
+            }
+            set {
+                this["OneSyncCheck"] = value;
+            }
+        }
     }
 }

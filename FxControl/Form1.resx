@@ -543,6 +543,33 @@
   <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="oneSyncCheck.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="oneSyncCheck.Location" type="System.Drawing.Point, System.Drawing">
+    <value>310, 146</value>
+  </data>
+  <data name="oneSyncCheck.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 17</value>
+  </data>
+  <data name="oneSyncCheck.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="oneSyncCheck.Text" xml:space="preserve">
+    <value>Enable One Sync</value>
+  </data>
+  <data name="&gt;&gt;oneSyncCheck.Name" xml:space="preserve">
+    <value>oneSyncCheck</value>
+  </data>
+  <data name="&gt;&gt;oneSyncCheck.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oneSyncCheck.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;oneSyncCheck.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="txtServerIp.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 119</value>
   </data>
@@ -568,7 +595,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;txtServerIp.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -598,7 +625,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -631,7 +658,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="txtServerLogsLocation.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 91</value>
@@ -655,7 +682,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;txtServerLogsLocation.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="btnChangeServerLogsLocation.Location" type="System.Drawing.Point, System.Drawing">
     <value>310, 89</value>
@@ -682,7 +709,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;btnChangeServerLogsLocation.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -712,7 +739,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="btnChangeConfigLocation.Location" type="System.Drawing.Point, System.Drawing">
     <value>310, 61</value>
@@ -739,7 +766,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;btnChangeConfigLocation.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="txtServerCfgLocation.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 63</value>
@@ -763,7 +790,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;txtServerCfgLocation.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -793,7 +820,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="btnChangeServerLocation.Location" type="System.Drawing.Point, System.Drawing">
     <value>310, 33</value>
@@ -820,7 +847,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;btnChangeServerLocation.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="txtServerExeLocation.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 35</value>
@@ -844,7 +871,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;txtServerExeLocation.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="lblServerExe.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -874,7 +901,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;lblServerExe.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -1650,12 +1677,6 @@
   <data name="&gt;&gt;restartToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;timer1.Name" xml:space="preserve">
-    <value>timer1</value>
-  </data>
-  <data name="&gt;&gt;timer1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;kickToolStripMenuItem.Name" xml:space="preserve">
     <value>kickToolStripMenuItem</value>
   </data>
@@ -1667,6 +1688,12 @@
   </data>
   <data name="&gt;&gt;banToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;timer1.Name" xml:space="preserve">
+    <value>timer1</value>
+  </data>
+  <data name="&gt;&gt;timer1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Form1</value>

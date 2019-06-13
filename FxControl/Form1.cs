@@ -27,6 +27,7 @@ namespace FxControl
 
         DataTable dt, dt2;
         int count;
+        string argument;
 
         private Boolean _isFivemServerRunning, ServerStarted;
 
@@ -149,9 +150,18 @@ namespace FxControl
             Fxselectlocation();
             Configselectlocation();
             SetupServerLog();
+            serveripsave();
             chckBoxClearCache.Checked = Settings.Default.cache;
             chckBoxEnableServerLogs.Checked = Settings.Default.EnableServerLogs;
             txtServerIp.Text = Settings.Default.ServerIP;
+            if (Settings.Default.OneSyncCheck)
+            {
+                oneSyncCheck.Checked = true;
+            }
+            else
+            {
+                oneSyncCheck.Checked = false;
+            }
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -550,6 +560,31 @@ namespace FxControl
             }
         }
 
+        private void serveripsave()
+        {            
+            if (string.IsNullOrWhiteSpace(Settings.Default.ServerIP))
+            {
+                string serverip;
+                serverip = Microsoft.VisualBasic.Interaction.InputBox("Please write server ip and port", "For example : http://localhost:30120 ", "");
+                if (serverip.Contains(":"))
+                {
+                    Settings.Default.ServerIP = serverip;
+                    Settings.Default.Save();
+                    txtServerIp.Text = Settings.Default.ServerIP;
+                }
+                else
+                {
+                    MessageBox.Show("Please write server ip and port For example : http://localhost:30120");
+                    serveripsave();
+                }
+
+            }
+            else
+            {
+                txtServerIp.Text = Settings.Default.ServerIP;
+            }
+        }
+
         private void kickToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string reason;
@@ -590,6 +625,21 @@ namespace FxControl
         {
             Settings.Default.ServerIP = txtServerIp.Text;
             Settings.Default.Save(); 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (oneSyncCheck.Checked)
+            {
+                Settings.Default.OneSyncCheck = true;
+                argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec server.cfg + set onesync_enabled 1";
+            }
+            else
+            {
+                Settings.Default.OneSyncCheck = false;
+                argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") +"/citizen/ +exec server.cfg";
+            }
+            Settings.Default.Save();
         }
 
         private Task addPlayer(string data, string id, string ping)

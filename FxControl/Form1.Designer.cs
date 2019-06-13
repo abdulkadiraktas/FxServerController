@@ -51,6 +51,9 @@ namespace FxControl
             this.chckBoxEnableServerLogs = new System.Windows.Forms.CheckBox();
             this.chckBoxClearCache = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtServerIp = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.txtServerLogsLocation = new System.Windows.Forms.TextBox();
             this.btnChangeServerLogsLocation = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -79,20 +82,18 @@ namespace FxControl
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.kickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.banToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.txtPlayerSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnShowLogs = new System.Windows.Forms.Button();
             this.richTxtLogScreen = new System.Windows.Forms.RichTextBox();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.kickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.banToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.txtServerIp = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            this.oneSyncCheck = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -110,8 +111,8 @@ namespace FxControl
             this.tabPage5.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.groupBox9.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -265,6 +266,7 @@ namespace FxControl
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.oneSyncCheck);
             this.groupBox3.Controls.Add(this.txtServerIp);
             this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.label4);
@@ -280,6 +282,23 @@ namespace FxControl
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // txtServerIp
+            // 
+            resources.ApplyResources(this.txtServerIp, "txtServerIp");
+            this.txtServerIp.Name = "txtServerIp";
+            // 
+            // button2
+            // 
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Name = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
             // 
             // txtServerLogsLocation
             // 
@@ -496,6 +515,26 @@ namespace FxControl
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.kickToolStripMenuItem,
+            this.banToolStripMenuItem});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            resources.ApplyResources(this.contextMenuStrip2, "contextMenuStrip2");
+            // 
+            // kickToolStripMenuItem
+            // 
+            this.kickToolStripMenuItem.Name = "kickToolStripMenuItem";
+            resources.ApplyResources(this.kickToolStripMenuItem, "kickToolStripMenuItem");
+            this.kickToolStripMenuItem.Click += new System.EventHandler(this.kickToolStripMenuItem_Click);
+            // 
+            // banToolStripMenuItem
+            // 
+            this.banToolStripMenuItem.Name = "banToolStripMenuItem";
+            resources.ApplyResources(this.banToolStripMenuItem, "banToolStripMenuItem");
+            this.banToolStripMenuItem.Click += new System.EventHandler(this.banToolStripMenuItem_Click);
+            // 
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.txtPlayerSearch);
@@ -514,6 +553,14 @@ namespace FxControl
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
+            // 
+            // button1
+            // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // timer1
             // 
@@ -540,50 +587,12 @@ namespace FxControl
             this.richTxtLogScreen.Name = "richTxtLogScreen";
             this.richTxtLogScreen.ReadOnly = true;
             // 
-            // contextMenuStrip2
+            // oneSyncCheck
             // 
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.kickToolStripMenuItem,
-            this.banToolStripMenuItem});
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            resources.ApplyResources(this.contextMenuStrip2, "contextMenuStrip2");
-            // 
-            // kickToolStripMenuItem
-            // 
-            this.kickToolStripMenuItem.Name = "kickToolStripMenuItem";
-            resources.ApplyResources(this.kickToolStripMenuItem, "kickToolStripMenuItem");
-            this.kickToolStripMenuItem.Click += new System.EventHandler(this.kickToolStripMenuItem_Click);
-            // 
-            // banToolStripMenuItem
-            // 
-            this.banToolStripMenuItem.Name = "banToolStripMenuItem";
-            resources.ApplyResources(this.banToolStripMenuItem, "banToolStripMenuItem");
-            this.banToolStripMenuItem.Click += new System.EventHandler(this.banToolStripMenuItem_Click);
-            // 
-            // button1
-            // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // txtServerIp
-            // 
-            resources.ApplyResources(this.txtServerIp, "txtServerIp");
-            this.txtServerIp.Name = "txtServerIp";
-            // 
-            // button2
-            // 
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
+            resources.ApplyResources(this.oneSyncCheck, "oneSyncCheck");
+            this.oneSyncCheck.Name = "oneSyncCheck";
+            this.oneSyncCheck.UseVisualStyleBackColor = true;
+            this.oneSyncCheck.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 
@@ -618,9 +627,9 @@ namespace FxControl
             this.tabPage5.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.contextMenuStrip2.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -688,6 +697,7 @@ namespace FxControl
         private System.Windows.Forms.TextBox txtServerIp;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox oneSyncCheck;
     }
 }
 
