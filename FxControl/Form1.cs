@@ -139,8 +139,7 @@ namespace FxControl
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-            MessageBox.Show(Settings.Default.OneSyncCheck.ToString());
+        { 
             if (Settings.Default.OneSyncCheck)
             {
                 oneSyncCheck.Checked = true;
