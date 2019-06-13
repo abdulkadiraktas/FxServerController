@@ -295,10 +295,9 @@ namespace FxControl
             var startInfo = new ProcessStartInfo
             {
                 WindowStyle = ProcessWindowStyle.Hidden,
-                FileName = Settings.Default.ServerExeLocation,       // +set citizen_dir C:/FiveM/FXServer.exe
-                Arguments = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + // C:/FiveM
-                         "/citizen/ +exec server.cfg",         // /citizen/ +exec server.cfg
-                WorkingDirectory = Settings.Default.ServerConfigLocation.Replace("\\server.cfg", "")                    // C:/FiveM/cfx-server-data-master
+                FileName = Settings.Default.ServerExeLocation,        
+                Arguments = argument, 
+                WorkingDirectory = Settings.Default.ServerConfigLocation.Replace("\\server.cfg", "")                    
             };
             startInfo.CreateNoWindow = true;
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
