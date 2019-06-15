@@ -51,6 +51,7 @@ namespace FxControl
             this.chckBoxEnableServerLogs = new System.Windows.Forms.CheckBox();
             this.chckBoxClearCache = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.oneSyncCheck = new System.Windows.Forms.CheckBox();
             this.txtServerIp = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -93,7 +94,6 @@ namespace FxControl
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnShowLogs = new System.Windows.Forms.Button();
             this.richTxtLogScreen = new System.Windows.Forms.RichTextBox();
-            this.oneSyncCheck = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -282,6 +282,13 @@ namespace FxControl
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // oneSyncCheck
+            // 
+            resources.ApplyResources(this.oneSyncCheck, "oneSyncCheck");
+            this.oneSyncCheck.Name = "oneSyncCheck";
+            this.oneSyncCheck.UseVisualStyleBackColor = true;
+            this.oneSyncCheck.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // txtServerIp
             // 
@@ -565,6 +572,7 @@ namespace FxControl
             // timer1
             // 
             this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // progressBar1
@@ -586,13 +594,6 @@ namespace FxControl
             this.richTxtLogScreen.ForeColor = System.Drawing.Color.White;
             this.richTxtLogScreen.Name = "richTxtLogScreen";
             this.richTxtLogScreen.ReadOnly = true;
-            // 
-            // oneSyncCheck
-            // 
-            resources.ApplyResources(this.oneSyncCheck, "oneSyncCheck");
-            this.oneSyncCheck.Name = "oneSyncCheck";
-            this.oneSyncCheck.UseVisualStyleBackColor = true;
-            this.oneSyncCheck.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 

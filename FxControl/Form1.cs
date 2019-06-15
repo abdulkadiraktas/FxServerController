@@ -142,6 +142,7 @@ namespace FxControl
         { 
             if (Settings.Default.OneSyncCheck)
             {
+                oneSyncCheck.Checked = false;
                 oneSyncCheck.Checked = true;
             }
             else
@@ -165,7 +166,7 @@ namespace FxControl
             txtServerIp.Text = Settings.Default.ServerIP;
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
+        private async void Timer1_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < lstBoxTiming.Items.Count; i++)
             {
@@ -187,13 +188,13 @@ namespace FxControl
                 groupBox5.Enabled = true;
                 CheckIfCrashed();
                 count++;
-                if (count == 10)
+                if (count >= 20)
                 {
                     count = 0;
-                    Thread addDatathread = new Thread(async () =>
-                    await serverInfo());
-                    addDatathread.Start();
-                    Thread.Sleep(500);
+                    //Thread addDatathread = new Thread(async () =>
+                    //await serverInfo());
+                    //addDatathread.Start();                    
+                    await serverInfo();
                 }
             }
             else
@@ -651,16 +652,23 @@ namespace FxControl
 
         private Task addPlayer(string data, string id, string ping)
         {
-            DataRow row = dt2.NewRow();
-            row["name"] = data;
-            row["id"] = id;
-            row["ping"] = ping;
-            dt2.Rows.Add(row);
-            dataGridView2.DataSource = dt2;
+            try
+            {
+                DataRow row = dt2.NewRow();
+                row["name"] = data;
+                row["id"] = id;
+                row["ping"] = ping;
+                dt2.Rows.Add(row);
+                dataGridView2.DataSource = dt2;
+
+            }
+            catch (Exception)
+            {
+            }
             return Task.CompletedTask;
         }
 
-        private Task serverInfo()
+        private async Task serverInfo()
         {
             try
             {
@@ -676,15 +684,16 @@ namespace FxControl
                 try
                 {
                     var json = wc.DownloadString(txtServerIp.Text + "/players.json");
-                    JArray a = JArray.Parse(json);
+                    JArray a = JArray.Parse(json);                    
                     for (int i = 0; i < a.Count; i++)
                     {
                         name = a[i]["name"].ToString();
                         id = a[i]["id"].ToString();
                         ping = a[i]["ping"].ToString();
-                        Thread addPlayerDatathread = new Thread(() =>
-                        addPlayer(name, id, ping));
-                        addPlayerDatathread.Start();
+                        //Thread addPlayerDatathread = new Thread(() =>
+                        //addPlayer(name, id, ping));
+                        //addPlayerDatathread.Start();
+                        await addPlayer(name, id, ping);
                     }
                 }
                 catch (Exception)
@@ -695,8 +704,6 @@ namespace FxControl
             }
             //http://35.204.151.166:30120/info.json
             //http://35.204.151.166:30120/players.json
-
-            return Task.CompletedTask;
         }
 
 
