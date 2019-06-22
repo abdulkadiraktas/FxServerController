@@ -1,5 +1,9 @@
 # FxServerController
 
+## Requirement :
+ScaleformAnnouncements
+https://github.com/abdulkadiraktas/ScaleformAnnouncements
+
 ## All Feature :
 
 - Server start/stop/restart
