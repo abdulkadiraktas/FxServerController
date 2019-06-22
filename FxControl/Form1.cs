@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net.Sockets;
 
 namespace FxControl
 {
@@ -139,7 +140,7 @@ namespace FxControl
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        { 
+        {
             if (Settings.Default.OneSyncCheck)
             {
                 oneSyncCheck.Checked = false;
@@ -164,6 +165,7 @@ namespace FxControl
             chckBoxClearCache.Checked = Settings.Default.cache;
             chckBoxEnableServerLogs.Checked = Settings.Default.EnableServerLogs;
             txtServerIp.Text = Settings.Default.ServerIP;
+            txtduyuru.Text = Settings.Default.duyuru;
         }
 
         private async void Timer1_Tick(object sender, EventArgs e)
@@ -174,6 +176,12 @@ namespace FxControl
                 {
                     timer1.Stop();
                     OnRestart();
+                } 
+                DateTime sure = DateTime.Parse(lstBoxTiming.Items[i].ToString());
+                DateTime sure2 = DateTime.Now.AddMinutes(Double.Parse(maskedTextBox1.Text)); 
+                if (sure2.ToString("HH:mm:ss") == sure.ToString("HH:mm:ss"))
+                {
+                    Ress("", "announce 1 5", txtduyuru.Text);
                 }
             }
 
@@ -221,8 +229,7 @@ namespace FxControl
                 {
                     Ress("clientkick", dataGridView2.Rows[i].Cells[1].Value.ToString(), "Sunucu Bakimda");
                 }
-                Thread.Sleep(1000);
-                count = 0;
+                count = 0;                
                 _process.Kill();
                 _isFivemServerRunning = false;
                 dt.Clear();
@@ -330,7 +337,7 @@ namespace FxControl
                 }
                 else if (e.Data.Contains("Couldn't") || e.Data.Contains("Error"))
                 {
-                    Invoke(new Action(() => errorText.AppendText(Environment.NewLine + e.Data)));
+                    Invoke(new Action(() => errorText.AppendText(Environment.NewLine+ Environment.NewLine + e.Data)));
                     Invoke(new Action(() => errorText.ScrollToCaret()));
                 }
                 else if (e.Data.Contains("Started resource"))
@@ -378,7 +385,14 @@ namespace FxControl
         {
             if (!string.IsNullOrWhiteSpace(txtSendCommand.Text) && !string.IsNullOrWhiteSpace(comboBox1.Text))
             {
-                Ress(comboBox1.Text, txtSendCommand.Text, "");
+                if (checkBox1.Checked)
+                {
+                    Ress("", txtSendCommand.Text, "");
+                }
+                else
+                {
+                    Ress(comboBox1.Text, txtSendCommand.Text, "");
+                }
             }
         }
 
@@ -473,7 +487,7 @@ namespace FxControl
         }
 
         private void BtnStartServer_Click(object sender, EventArgs e)
-        {
+        { 
             StartServer();
             progressBar1.Maximum = 100;
         }
@@ -550,11 +564,18 @@ namespace FxControl
 
         private Task AddData(string data)
         {
-            DataRow row = dt.NewRow();
-            row["resource"] = data;
-            dt.Rows.Add(row);
-            dataGridView1.DataSource = dt;
-            return Task.CompletedTask;
+            try
+            {
+                DataRow row = dt.NewRow();
+                row["resource"] = data;
+                dt.Rows.Add(row);
+                dataGridView1.DataSource = dt;
+                return Task.CompletedTask;
+            }
+            catch (Exception)
+            {
+                return Task.CompletedTask;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -650,6 +671,22 @@ namespace FxControl
             Settings.Default.Save();
         }
 
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                comboBox1.Enabled = false;
+            }
+            else
+            {
+                comboBox1.Enabled = true;
+            }
+        }
+
+        private void errorText_TextChanged(object sender, EventArgs e)
+        { 
+        }
+
         private Task addPlayer(string data, string id, string ping)
         {
             try
@@ -666,6 +703,20 @@ namespace FxControl
             {
             }
             return Task.CompletedTask;
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            if (maskedTextBox1.Text == "")
+            {
+                maskedTextBox1.Text = "1";
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Settings.Default.duyuru =  txtduyuru.Text;
+            Settings.Default.Save();
         }
 
         private async Task serverInfo()
@@ -705,7 +756,5 @@ namespace FxControl
             //http://35.204.151.166:30120/info.json
             //http://35.204.151.166:30120/players.json
         }
-
-
     }
 }

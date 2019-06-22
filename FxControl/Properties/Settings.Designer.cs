@@ -118,5 +118,17 @@ namespace FxControl.Properties {
                 this["OneSyncCheck"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string duyuru {
+            get {
+                return ((string)(this["duyuru"]));
+            }
+            set {
+                this["duyuru"] = value;
+            }
+        }
     }
 }

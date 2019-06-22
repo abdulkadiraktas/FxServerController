@@ -35,6 +35,12 @@ namespace FxControl
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.txtduyuru = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnClearTimerList = new System.Windows.Forms.Button();
             this.btnDeleteSelectedTime = new System.Windows.Forms.Button();
             this.lstBoxTiming = new System.Windows.Forms.ListBox();
@@ -70,10 +76,12 @@ namespace FxControl
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtSearchResource = new System.Windows.Forms.TextBox();
             this.lblSearchresource = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.btnRefreshServer = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.txtSendCommand = new System.Windows.Forms.TextBox();
@@ -97,6 +105,7 @@ namespace FxControl
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -136,6 +145,7 @@ namespace FxControl
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.groupBox10);
             this.groupBox2.Controls.Add(this.btnClearTimerList);
             this.groupBox2.Controls.Add(this.btnDeleteSelectedTime);
             this.groupBox2.Controls.Add(this.lstBoxTiming);
@@ -144,6 +154,46 @@ namespace FxControl
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.txtduyuru);
+            this.groupBox10.Controls.Add(this.label6);
+            this.groupBox10.Controls.Add(this.button3);
+            this.groupBox10.Controls.Add(this.maskedTextBox1);
+            this.groupBox10.Controls.Add(this.label5);
+            resources.ApplyResources(this.groupBox10, "groupBox10");
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.TabStop = false;
+            // 
+            // txtduyuru
+            // 
+            resources.ApplyResources(this.txtduyuru, "txtduyuru");
+            this.txtduyuru.Name = "txtduyuru";
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // button3
+            // 
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // maskedTextBox1
+            // 
+            resources.ApplyResources(this.maskedTextBox1, "maskedTextBox1");
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
+            this.maskedTextBox1.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
             // 
             // btnClearTimerList
             // 
@@ -399,7 +449,8 @@ namespace FxControl
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stopToolStripMenuItem,
-            this.restartToolStripMenuItem});
+            this.restartToolStripMenuItem,
+            this.toolStripMenuItem2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
             // 
@@ -414,6 +465,11 @@ namespace FxControl
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
             resources.ApplyResources(this.restartToolStripMenuItem, "restartToolStripMenuItem");
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.RestartToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             // 
             // groupBox7
             // 
@@ -436,6 +492,7 @@ namespace FxControl
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.checkBox1);
             this.groupBox5.Controls.Add(this.btnRefreshServer);
             this.groupBox5.Controls.Add(this.comboBox1);
             this.groupBox5.Controls.Add(this.txtSendCommand);
@@ -443,6 +500,13 @@ namespace FxControl
             resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
+            // 
+            // checkBox1
+            // 
+            resources.ApplyResources(this.checkBox1, "checkBox1");
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_1);
             // 
             // btnRefreshServer
             // 
@@ -488,6 +552,7 @@ namespace FxControl
             // 
             resources.ApplyResources(this.errorText, "errorText");
             this.errorText.Name = "errorText";
+            this.errorText.TextChanged += new System.EventHandler(this.errorText_TextChanged);
             // 
             // tabPage5
             // 
@@ -604,12 +669,15 @@ namespace FxControl
             this.Controls.Add(this.btnShowLogs);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.richTxtLogScreen);
+            this.DoubleBuffered = true;
             this.Name = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -699,6 +767,14 @@ namespace FxControl
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox oneSyncCheck;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.TextBox txtduyuru;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
 
