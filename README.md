@@ -1,7 +1,7 @@
 # FxServerController
 
 ## Requirement :
-ScaleformAnnouncements
+Updated : 25.06.2019 // please read readme for ScaleformAnnouncements
 https://github.com/abdulkadiraktas/ScaleformAnnouncements
 
 ## All Feature :
