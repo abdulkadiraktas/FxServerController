@@ -36,11 +36,13 @@ namespace FxControl
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.txtduyuru = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.txtduyuru = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.annonCheck = new System.Windows.Forms.CheckBox();
             this.btnClearTimerList = new System.Windows.Forms.Button();
             this.btnDeleteSelectedTime = new System.Windows.Forms.Button();
             this.lstBoxTiming = new System.Windows.Forms.ListBox();
@@ -102,10 +104,13 @@ namespace FxControl
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnShowLogs = new System.Windows.Forms.Button();
             this.richTxtLogScreen = new System.Windows.Forms.RichTextBox();
+            this.txtHash = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -157,31 +162,28 @@ namespace FxControl
             // 
             // groupBox10
             // 
-            this.groupBox10.Controls.Add(this.txtduyuru);
-            this.groupBox10.Controls.Add(this.label6);
-            this.groupBox10.Controls.Add(this.button3);
-            this.groupBox10.Controls.Add(this.maskedTextBox1);
-            this.groupBox10.Controls.Add(this.label5);
+            this.groupBox10.Controls.Add(this.button4);
+            this.groupBox10.Controls.Add(this.txtHash);
+            this.groupBox10.Controls.Add(this.panel1);
+            this.groupBox10.Controls.Add(this.annonCheck);
             resources.ApplyResources(this.groupBox10, "groupBox10");
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.TabStop = false;
             // 
-            // txtduyuru
+            // panel1
             // 
-            resources.ApplyResources(this.txtduyuru, "txtduyuru");
-            this.txtduyuru.Name = "txtduyuru";
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.maskedTextBox1);
+            this.panel1.Controls.Add(this.txtduyuru);
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.label6);
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Name = "panel1";
             // 
-            // label6
+            // label5
             // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
-            // button3
-            // 
-            resources.ApplyResources(this.button3, "button3");
-            this.button3.Name = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
             // 
             // maskedTextBox1
             // 
@@ -190,10 +192,29 @@ namespace FxControl
             this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
             this.maskedTextBox1.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
             // 
-            // label5
+            // txtduyuru
             // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
+            resources.ApplyResources(this.txtduyuru, "txtduyuru");
+            this.txtduyuru.Name = "txtduyuru";
+            // 
+            // button3
+            // 
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // annonCheck
+            // 
+            resources.ApplyResources(this.annonCheck, "annonCheck");
+            this.annonCheck.Name = "annonCheck";
+            this.annonCheck.UseVisualStyleBackColor = true;
+            this.annonCheck.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // btnClearTimerList
             // 
@@ -660,6 +681,19 @@ namespace FxControl
             this.richTxtLogScreen.Name = "richTxtLogScreen";
             this.richTxtLogScreen.ReadOnly = true;
             // 
+            // txtHash
+            // 
+            resources.ApplyResources(this.txtHash, "txtHash");
+            this.txtHash.Name = "txtHash";
+            this.txtHash.ReadOnly = true;
+            // 
+            // button4
+            // 
+            resources.ApplyResources(this.button4, "button4");
+            this.button4.Name = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnAddTimeToList;
@@ -678,6 +712,8 @@ namespace FxControl
             this.groupBox2.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -775,6 +811,10 @@ namespace FxControl
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox annonCheck;
+        private System.Windows.Forms.TextBox txtHash;
+        private System.Windows.Forms.Button button4;
     }
 }
 

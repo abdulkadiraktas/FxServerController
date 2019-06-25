@@ -130,5 +130,29 @@ namespace FxControl.Properties {
                 this["duyuru"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool duyuruCheck {
+            get {
+                return ((bool)(this["duyuruCheck"]));
+            }
+            set {
+                this["duyuruCheck"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string hashforkick {
+            get {
+                return ((string)(this["hashforkick"]));
+            }
+            set {
+                this["hashforkick"] = value;
+            }
+        }
     }
 }

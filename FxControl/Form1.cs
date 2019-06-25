@@ -19,6 +19,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Sockets;
+using System.Text;
 
 namespace FxControl
 {
@@ -139,6 +140,28 @@ namespace FxControl
             }
         }
 
+        private void hashCreate()
+        {
+            if (string.IsNullOrWhiteSpace(Settings.Default.hashforkick))
+            {
+                Random random = new Random();
+                string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+                StringBuilder result = new StringBuilder(10);
+                for (int i = 0; i < 10; i++)
+                {
+                    result.Append(characters[random.Next(characters.Length)]);
+                }
+                txtHash.Text = result.ToString();
+                Settings.Default.hashforkick = result.ToString();
+                Settings.Default.Save();
+            }
+            else
+            {
+                txtHash.Text = Settings.Default.hashforkick.ToString();
+            }
+
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             if (Settings.Default.OneSyncCheck)
@@ -166,6 +189,10 @@ namespace FxControl
             chckBoxEnableServerLogs.Checked = Settings.Default.EnableServerLogs;
             txtServerIp.Text = Settings.Default.ServerIP;
             txtduyuru.Text = Settings.Default.duyuru;
+            annonCheck.Checked = Settings.Default.duyuruCheck;
+            annonCheck.Checked = !annonCheck.Checked;
+            annonCheck.Checked = !annonCheck.Checked;
+            hashCreate();
         }
 
         private async void Timer1_Tick(object sender, EventArgs e)
@@ -176,12 +203,20 @@ namespace FxControl
                 {
                     timer1.Stop();
                     OnRestart();
-                } 
-                DateTime sure = DateTime.Parse(lstBoxTiming.Items[i].ToString());
-                DateTime sure2 = DateTime.Now.AddMinutes(Double.Parse(maskedTextBox1.Text)); 
-                if (sure2.ToString("HH:mm:ss") == sure.ToString("HH:mm:ss"))
+                }
+                if (annonCheck.Checked)
                 {
-                    Ress("", "announce 1 5", txtduyuru.Text);
+                    if (int.Parse(maskedTextBox1.Text) > 0)
+                    {
+                        DateTime sure = DateTime.Parse(lstBoxTiming.Items[i].ToString());
+                        DateTime sure2 = DateTime.Now.AddSeconds(Double.Parse(maskedTextBox1.Text));
+                        if (sure2.ToString("HH:mm:ss") == sure.ToString("HH:mm:ss"))
+                        {
+                           Ress("announce " + txtHash.Text + " 1 2", maskedTextBox1.Text + " " + txtduyuru.Text,"");
+                            maskedTextBox1.Text = (int.Parse(maskedTextBox1.Text) - 5).ToString();
+                        }
+
+                    }
                 }
             }
 
@@ -220,22 +255,24 @@ namespace FxControl
 
         }
 
-        private void StopServer()
+        private async void StopServer()
         {
             try
             {
                 count = 11;
                 for (int i = 0; i < dataGridView2.RowCount; i++)
                 {
-                    Ress("clientkick", dataGridView2.Rows[i].Cells[1].Value.ToString(), "Sunucu Bakimda");
+                   await  Ress("kickplayerforfxcontroller", txtHash.Text + " " + dataGridView2.Rows[i].Cells[1].Value.ToString(), "Sunucu Bakimda");
                 }
-                count = 0;                
-                _process.Kill();
+                await Task.Delay(500);
+                count = 0;
                 _isFivemServerRunning = false;
                 dt.Clear();
+                _process.Kill();
             }
-            catch (Exception)
+            catch (Exception es)
             {
+                MessageBox.Show(es.Message);
             }
         }
 
@@ -304,9 +341,9 @@ namespace FxControl
             var startInfo = new ProcessStartInfo
             {
                 WindowStyle = ProcessWindowStyle.Hidden,
-                FileName = Settings.Default.ServerExeLocation,        
-                Arguments = argument, 
-                WorkingDirectory = Settings.Default.ServerConfigLocation.Replace("\\server.cfg", "")                    
+                FileName = Settings.Default.ServerExeLocation,
+                Arguments = argument,
+                WorkingDirectory = Settings.Default.ServerConfigLocation.Replace("\\server.cfg", "")
             };
             startInfo.CreateNoWindow = true;
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -315,14 +352,14 @@ namespace FxControl
             _process.StartInfo = startInfo;
             _process.StartInfo.RedirectStandardInput = true;
             date = DateTime.Now.ToString("yyyy_MM_dd_HH_mm");
-            _process.OutputDataReceived += CaptureOutput;
+            _process.OutputDataReceived += CaptureOutputAsync;
             _process.Start();
             _process.BeginOutputReadLine();
             _isFivemServerRunning = true;
         }
 
         //started resource
-        private void CaptureOutput(object sender, DataReceivedEventArgs e)
+        private async void CaptureOutputAsync(object sender, DataReceivedEventArgs e)
         {
             if (e.Data != null)
             {
@@ -337,7 +374,7 @@ namespace FxControl
                 }
                 else if (e.Data.Contains("Couldn't") || e.Data.Contains("Error"))
                 {
-                    Invoke(new Action(() => errorText.AppendText(Environment.NewLine+ Environment.NewLine + e.Data)));
+                    Invoke(new Action(() => errorText.AppendText(Environment.NewLine + Environment.NewLine + e.Data)));
                     Invoke(new Action(() => errorText.ScrollToCaret()));
                 }
                 else if (e.Data.Contains("Started resource"))
@@ -345,9 +382,10 @@ namespace FxControl
                     //e.Data.Replace("started resource").Trim()
                     //  dataGridView1.Rows.Add(e.Data.Replace("Started resource", "").Trim());
                     //AddData(e.Data.Replace("Started resource", "").Trim());
-                    Thread addDatathread = new Thread(() =>
-                    AddData(e.Data.Replace("Started resource", "").Trim()));
-                    addDatathread.Start();
+                    //Thread addDatathread = new Thread(() =>
+                    //AddData(e.Data.Replace("Started resource", "").Trim()));
+                    //addDatathread.Start();
+                    await AddData(e.Data.Replace("Started resource", "").Trim());
                 }
                 if (!ServerStarted)
                 {
@@ -368,17 +406,18 @@ namespace FxControl
 
                     }
                     catch (Exception)
-                    { 
+                    {
                     }
                 }
             }
         }
 
-        private void Ress(string status, string resourcename, string reason)
+        private Task Ress(string status, string resourcename, string reason)
         {
             StreamWriter myStreamWriter = _process.StandardInput;
             myStreamWriter.WriteLine(status + " " + resourcename + " " + reason);
             myStreamWriter.Flush();
+            return Task.CompletedTask;
         }
 
         private void Button10_Click(object sender, EventArgs e)
@@ -387,7 +426,7 @@ namespace FxControl
             {
                 if (checkBox1.Checked)
                 {
-                    Ress("", txtSendCommand.Text, "");
+                    Ress(txtSendCommand.Text, "","");
                 }
                 else
                 {
@@ -487,7 +526,7 @@ namespace FxControl
         }
 
         private void BtnStartServer_Click(object sender, EventArgs e)
-        { 
+        {
             StartServer();
             progressBar1.Maximum = 100;
         }
@@ -590,7 +629,7 @@ namespace FxControl
         }
 
         private void serveripsave()
-        {            
+        {
             if (string.IsNullOrWhiteSpace(Settings.Default.ServerIP))
             {
                 string serverip;
@@ -620,13 +659,13 @@ namespace FxControl
             reason = Microsoft.VisualBasic.Interaction.InputBox("Please write reason", "Kick Reason", "");
             if (reason.Length > 5)
             {
-                Ress("clientkick", dataGridView2.SelectedRows[0].Cells[1].Value.ToString(), reason);
+                Ress("kickplayerforfxcontroller", txtHash.Text + " " + dataGridView2.SelectedRows[0].Cells[1].Value.ToString(), reason);
             }
         }
 
         private void banToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+        { 
+            Ress("banplayerforfxcontroller", txtHash.Text + " " + dataGridView2.SelectedRows[0].Cells[1].Value.ToString(), "Uzaklaştırıldın..");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -644,7 +683,7 @@ namespace FxControl
                 count = 11;
                 for (int i = 0; i < dataGridView2.RowCount; i++)
                 {
-                    Ress("clientkick", dataGridView2.Rows[i].Cells[1].Value.ToString(), "Sunucu Bakimda");
+                    Ress("kickplayerforfxcontroller", txtHash.Text + " " + dataGridView2.Rows[i].Cells[1].Value.ToString(), "Sunucu Bakimda");
                 }
                 count = 0;
             }
@@ -653,7 +692,7 @@ namespace FxControl
         private void button2_Click(object sender, EventArgs e)
         {
             Settings.Default.ServerIP = txtServerIp.Text;
-            Settings.Default.Save(); 
+            Settings.Default.Save();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -666,7 +705,7 @@ namespace FxControl
             else
             {
                 Settings.Default.OneSyncCheck = false;
-                argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") +"/citizen/ +exec server.cfg";
+                argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec server.cfg";
             }
             Settings.Default.Save();
         }
@@ -684,7 +723,7 @@ namespace FxControl
         }
 
         private void errorText_TextChanged(object sender, EventArgs e)
-        { 
+        {
         }
 
         private Task addPlayer(string data, string id, string ping)
@@ -713,9 +752,30 @@ namespace FxControl
             }
         }
 
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (annonCheck.Checked)
+            {
+                panel1.Enabled = true;
+            }
+            else
+            {
+                panel1.Enabled = false;
+            }
+            Settings.Default.duyuruCheck = annonCheck.Checked;
+            Settings.Default.Save();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Settings.Default.hashforkick = "";
+            Settings.Default.Save();
+            hashCreate();
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
-            Settings.Default.duyuru =  txtduyuru.Text;
+            Settings.Default.duyuru = txtduyuru.Text;
             Settings.Default.Save();
         }
 
@@ -735,7 +795,7 @@ namespace FxControl
                 try
                 {
                     var json = wc.DownloadString(txtServerIp.Text + "/players.json");
-                    JArray a = JArray.Parse(json);                    
+                    JArray a = JArray.Parse(json);
                     for (int i = 0; i < a.Count; i++)
                     {
                         name = a[i]["name"].ToString();
