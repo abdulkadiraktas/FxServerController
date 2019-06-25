@@ -6,6 +6,9 @@ https://github.com/abdulkadiraktas/ScaleformAnnouncements
 
 ## All Feature :
 
+- Announcement system for before server shutdown.
+- Player kick system for before server shutdown.
+- Listing all online users and ping
 - Server start/stop/restart
 - Timing for restarting
 - Logging system /optional in setting panel
