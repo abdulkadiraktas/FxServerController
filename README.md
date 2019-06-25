@@ -4,7 +4,14 @@
 Updated : 25.06.2019 // please read readme for ScaleformAnnouncements
 https://github.com/abdulkadiraktas/ScaleformAnnouncements
 
-## All Feature :
+Released : https://github.com/abdulkadiraktas/FxServerController/releases/tag/v5
+
+I created application for server Controller.
+
+**Requirement Update date : 25.06.2019** : 
+https://github.com/abdulkadiraktas/ScaleformAnnouncements
+
+Features :
 
 - Announcement system for before server shutdown.
 - Player kick system for before server shutdown.
@@ -19,15 +26,15 @@ https://github.com/abdulkadiraktas/ScaleformAnnouncements
 - Log screen hide/show
 - Multi language : TR/EN/FR
 
-## Screenshots : 
-![1](https://forum.fivem.net/uploads/default/original/3X/b/1/b126a32b77b3434eb6181bdcf3b1c5d397411292.png)
-![1](https://forum.fivem.net/uploads/default/original/3X/6/d/6d77eca096d89ec2f90d8d8e3eea9a05408a7a8e.png)
-![1](https://forum.fivem.net/uploads/default/original/3X/6/1/6175c99e33dd6d9ed258e3520d3cf621743f37db.png)
-![1](https://forum.fivem.net/uploads/default/original/3X/d/a/dac4d0cf236566ad8661a98b75b2c71efe7fa0bf.png)
 
-
-
-
+[details="Screenshots"]
+https://forum.fivem.net/uploads/default/original/3X/b/d/bdaec952d0a9eb5fd32313aa61db3e5a7223fd26.png
+https://forum.fivem.net/uploads/default/original/3X/4/f/4f1fb171cb785c55670a446c4e2068f9aeb72caf.png
+https://forum.fivem.net/uploads/default/original/3X/0/c/0ca1845518ee270b78efe25056c204f856dbab2f.png
+https://forum.fivem.net/uploads/default/original/3X/9/2/921961a4089e70c7dfa62efae5fad98d5051cf0d.png
+https://forum.fivem.net/uploads/default/original/3X/5/4/54d5a9919dc6afbc8b47eaa2cc2860548ce90825.png
+[/details]
+ 
 
 ## Forum link : 
 # https://forum.fivem.net/t/release-fx-controller-windows
