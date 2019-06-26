@@ -154,5 +154,17 @@ namespace FxControl.Properties {
                 this["hashforkick"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server restarting...")]
+        public string ServerRestartMessage {
+            get {
+                return ((string)(this["ServerRestartMessage"]));
+            }
+            set {
+                this["ServerRestartMessage"] = value;
+            }
+        }
     }
 }

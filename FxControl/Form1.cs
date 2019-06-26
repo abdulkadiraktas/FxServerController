@@ -193,6 +193,7 @@ namespace FxControl
             annonCheck.Checked = !annonCheck.Checked;
             annonCheck.Checked = !annonCheck.Checked;
             hashCreate();
+            txtServerRestartMessage.Text = Settings.Default.ServerRestartMessage;
         }
 
         private async void Timer1_Tick(object sender, EventArgs e)
@@ -262,7 +263,7 @@ namespace FxControl
                 count = 11;
                 for (int i = 0; i < dataGridView2.RowCount; i++)
                 {
-                   await  Ress("kickplayerforfxcontroller", txtHash.Text + " " + dataGridView2.Rows[i].Cells[1].Value.ToString(), "Sunucu Bakimda");
+                   await  Ress("kickplayerforfxcontroller", txtHash.Text + " " + dataGridView2.Rows[i].Cells[1].Value.ToString(), txtServerRestartMessage.Text);
                 }
                 await Task.Delay(1000);
                 count = 0;
@@ -683,7 +684,7 @@ namespace FxControl
                 count = 11;
                 for (int i = 0; i < dataGridView2.RowCount; i++)
                 {
-                    Ress("kickplayerforfxcontroller", txtHash.Text + " " + dataGridView2.Rows[i].Cells[1].Value.ToString(), "Sunucu Bakimda");
+                    Ress("kickplayerforfxcontroller", txtHash.Text + " " + dataGridView2.Rows[i].Cells[1].Value.ToString(), txtServerRestartMessage.Text);
                 }
                 count = 0;
             }
@@ -771,6 +772,15 @@ namespace FxControl
             Settings.Default.hashforkick = "";
             Settings.Default.Save();
             hashCreate();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtServerRestartMessage.Text))
+            {
+                Settings.Default.ServerRestartMessage = txtServerRestartMessage.Text;
+                Settings.Default.Save();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)

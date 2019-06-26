@@ -36,6 +36,8 @@ namespace FxControl
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.txtHash = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
@@ -104,8 +106,9 @@ namespace FxControl
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnShowLogs = new System.Windows.Forms.Button();
             this.richTxtLogScreen = new System.Windows.Forms.RichTextBox();
-            this.txtHash = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.txtServerRestartMessage = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -127,6 +130,7 @@ namespace FxControl
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -169,6 +173,19 @@ namespace FxControl
             resources.ApplyResources(this.groupBox10, "groupBox10");
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.TabStop = false;
+            // 
+            // button4
+            // 
+            resources.ApplyResources(this.button4, "button4");
+            this.button4.Name = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // txtHash
+            // 
+            resources.ApplyResources(this.txtHash, "txtHash");
+            this.txtHash.Name = "txtHash";
+            this.txtHash.ReadOnly = true;
             // 
             // panel1
             // 
@@ -300,6 +317,7 @@ namespace FxControl
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.groupBox11);
             this.groupBox4.Controls.Add(this.lblSelectLanguage);
             this.groupBox4.Controls.Add(this.cmbSelectLanguage);
             this.groupBox4.Controls.Add(this.chckBoxEnableServerLogs);
@@ -681,18 +699,25 @@ namespace FxControl
             this.richTxtLogScreen.Name = "richTxtLogScreen";
             this.richTxtLogScreen.ReadOnly = true;
             // 
-            // txtHash
+            // groupBox11
             // 
-            resources.ApplyResources(this.txtHash, "txtHash");
-            this.txtHash.Name = "txtHash";
-            this.txtHash.ReadOnly = true;
+            this.groupBox11.Controls.Add(this.button5);
+            this.groupBox11.Controls.Add(this.txtServerRestartMessage);
+            resources.ApplyResources(this.groupBox11, "groupBox11");
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.TabStop = false;
             // 
-            // button4
+            // txtServerRestartMessage
             // 
-            resources.ApplyResources(this.button4, "button4");
-            this.button4.Name = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            resources.ApplyResources(this.txtServerRestartMessage, "txtServerRestartMessage");
+            this.txtServerRestartMessage.Name = "txtServerRestartMessage";
+            // 
+            // button5
+            // 
+            resources.ApplyResources(this.button5, "button5");
+            this.button5.Name = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
@@ -735,6 +760,8 @@ namespace FxControl
             this.contextMenuStrip2.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -815,6 +842,9 @@ namespace FxControl
         private System.Windows.Forms.CheckBox annonCheck;
         private System.Windows.Forms.TextBox txtHash;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox txtServerRestartMessage;
     }
 }
 

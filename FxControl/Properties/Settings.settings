@@ -35,5 +35,8 @@
     <Setting Name="hashforkick" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="ServerRestartMessage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Server restarting...</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

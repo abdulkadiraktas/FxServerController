@@ -33,3 +33,4 @@ D:\Git\FxServerController\FxControl\obj\Debug\tr-TR\FxControl.resources.dll
 D:\Git\FxServerController\FxControl\bin\Debug\Newtonsoft.Json.dll
 D:\Git\FxServerController\FxControl\bin\Debug\Newtonsoft.Json.xml
 D:\Git\FxServerController\FxControl\obj\Debug\FxControl.csproj.CopyComplete
+D:\Git\FxServerController\FxControl\obj\Debug\FxControl.csprojAssemblyReference.cache
