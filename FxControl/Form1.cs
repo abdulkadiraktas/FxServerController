@@ -776,7 +776,7 @@ namespace FxControl
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtServerRestartMessage.Text))
+            if (!string.IsNullOrWhiteSpace(txtServerRestartMessage.Text))
             {
                 Settings.Default.ServerRestartMessage = txtServerRestartMessage.Text;
                 Settings.Default.Save();
