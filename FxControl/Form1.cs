@@ -99,7 +99,7 @@ namespace FxControl
                 }
                 else
                 {
-                    Close();
+                    this.Close(); 
                 }
             }
             else
@@ -212,7 +212,7 @@ namespace FxControl
                         DateTime sure2 = DateTime.Now.AddSeconds(Double.Parse(maskedTextBox1.Text));
                         if (sure2.ToString("HH:mm:ss") == sure.ToString("HH:mm:ss"))
                         {
-                           Ress("announce " + txtHash.Text + " 1 2", maskedTextBox1.Text + " " + txtduyuru.Text,"");
+                         await  Ress("announce " + txtHash.Text + " 1 2", maskedTextBox1.Text + " " + txtduyuru.Text,"");
                             maskedTextBox1.Text = (int.Parse(maskedTextBox1.Text) - 5).ToString();
                         }
 
@@ -229,7 +229,6 @@ namespace FxControl
                 btnChangeConfigLocation.Enabled = false;
                 cmbSelectLanguage.Enabled = false;
                 groupBox5.Enabled = true;
-                CheckIfCrashed();
                 count++;
                 if (count >= 20)
                 {
@@ -242,6 +241,7 @@ namespace FxControl
             }
             else
             {
+                CheckIfCrashed();
                 btnStartServer.Enabled = true;
                 btnStopServer.Enabled = false;
                 btnRestartServer.Enabled = false;
@@ -264,22 +264,21 @@ namespace FxControl
                 {
                    await  Ress("kickplayerforfxcontroller", txtHash.Text + " " + dataGridView2.Rows[i].Cells[1].Value.ToString(), "Sunucu Bakimda");
                 }
-                await Task.Delay(500);
+                await Task.Delay(1000);
                 count = 0;
                 _isFivemServerRunning = false;
                 dt.Clear();
                 _process.Kill();
             }
-            catch (Exception es)
+            catch (Exception)
             {
-                MessageBox.Show(es.Message);
             }
         }
 
-        private void OnRestart()
+        private async void OnRestart()
         {
             StopServer();
-            Thread.Sleep(5000);
+           await Task.Delay(2000);
             StartServer();
             timer1.Start();
         }
@@ -643,7 +642,8 @@ namespace FxControl
                 else
                 {
                     MessageBox.Show("Please write server ip and port For example : http://localhost:30120");
-                    serveripsave();
+                    this.Close();
+                    //serveripsave();
                 }
 
             }
