@@ -1,5 +1,9 @@
 # FxServerController
 
+## How to setup
+https://youtu.be/kc34EwKI7sg
+
+
 ## Requirement :
 Updated : 25.06.2019 // please read readme for ScaleformAnnouncements
 https://github.com/abdulkadiraktas/ScaleformAnnouncements
