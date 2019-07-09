@@ -1,5 +1,9 @@
 # FxServerController
 
+## How to setup
+https://youtu.be/kc34EwKI7sg
+
+
 ## Requirement :
 Updated : 25.06.2019 // please read readme for ScaleformAnnouncements
 https://github.com/abdulkadiraktas/ScaleformAnnouncements
@@ -35,7 +39,7 @@ https://forum.fivem.net/uploads/default/original/3X/5/4/54d5a9919dc6afbc8b47eaa2
  
 
 ## Forum link : 
-# https://forum.fivem.net/t/release-fx-controller-windows
+# https://forum.fivem.net/t/release-fx-controller-windows-one-sync-support/
 
 # Thank you @TanguyOrtegat
 
