@@ -28,7 +28,8 @@ namespace FxControl
         private Process _process;
 
         DataTable dt, dt2;
-        int count;
+        int count,kalansure;
+        string cfgfilename;
         string argument;
 
         private Boolean _isFivemServerRunning, ServerStarted;
@@ -89,12 +90,14 @@ namespace FxControl
                 OpenFileDialog conf = new OpenFileDialog
                 {
                     Title = "",
-                    Filter = "Config|server.cfg"
+                    Filter = "Config|*.cfg"
                 };
                 if (conf.ShowDialog() == DialogResult.OK)
                 {
+                    Settings.Default.cfgfilename = conf.SafeFileName;
                     Settings.Default.ServerConfigLocation = conf.FileName;
                     Settings.Default.Save();
+                    cfgfilename = conf.SafeFileName; 
                     txtServerCfgLocation.Text = Settings.Default.ServerConfigLocation;
                 }
                 else
@@ -164,6 +167,7 @@ namespace FxControl
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            cfgfilename = Settings.Default.cfgfilename;
             if (Settings.Default.OneSyncCheck)
             {
                 oneSyncCheck.Checked = false;
@@ -207,14 +211,14 @@ namespace FxControl
                 }
                 if (annonCheck.Checked)
                 {
-                    if (int.Parse(maskedTextBox1.Text) > 0)
+                    if (kalansure > 0)
                     {
                         DateTime sure = DateTime.Parse(lstBoxTiming.Items[i].ToString());
-                        DateTime sure2 = DateTime.Now.AddSeconds(Double.Parse(maskedTextBox1.Text));
+                        DateTime sure2 = DateTime.Now.AddSeconds(Double.Parse(kalansure.ToString()));
                         if (sure2.ToString("HH:mm:ss") == sure.ToString("HH:mm:ss"))
                         {
-                         await  Ress("announce " + txtHash.Text + " 1 2", maskedTextBox1.Text + " " + txtduyuru.Text,"");
-                            maskedTextBox1.Text = (int.Parse(maskedTextBox1.Text) - 5).ToString();
+                         await  Ress("announce " + txtHash.Text + " 1 2", txtduyuru.Text + " " + kalansure, "");
+                            kalansure = kalansure - 5;
                         }
 
                     }
@@ -278,6 +282,7 @@ namespace FxControl
 
         private async void OnRestart()
         {
+            kalansure = int.Parse(maskedTextBox1.Text);
             StopServer();
            await Task.Delay(2000);
             StartServer();
@@ -322,7 +327,7 @@ namespace FxControl
                 Directory.CreateDirectory(path);
             }
             ServerStarted = false;
-            string serverPath = Settings.Default.ServerConfigLocation.Replace("server.cfg", "");
+            string serverPath = Settings.Default.ServerConfigLocation.Replace(cfgfilename, "");
             DirectoryInfo dir = new DirectoryInfo(@serverPath + "cache");
             if (dir.Exists && chckBoxClearCache.Checked)
             {
@@ -343,7 +348,7 @@ namespace FxControl
                 WindowStyle = ProcessWindowStyle.Hidden,
                 FileName = Settings.Default.ServerExeLocation,
                 Arguments = argument,
-                WorkingDirectory = Settings.Default.ServerConfigLocation.Replace("\\server.cfg", "")
+                WorkingDirectory = Settings.Default.ServerConfigLocation.Replace("\\"+ cfgfilename, "")
             };
             startInfo.CreateNoWindow = true;
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -502,6 +507,7 @@ namespace FxControl
         private void BtnAddTimeToList_Click(object sender, EventArgs e)
         {
             lstBoxTiming.Items.Add(dateTimePicker1.Value.ToString("HH:mm:ss"));
+            kalansure = int.Parse(maskedTextBox1.Text);
         }
 
         private void BtnDeleteSelectedTime_Click(object sender, EventArgs e)
@@ -633,7 +639,7 @@ namespace FxControl
             if (string.IsNullOrWhiteSpace(Settings.Default.ServerIP))
             {
                 string serverip;
-                serverip = Microsoft.VisualBasic.Interaction.InputBox("Please write server ip and port", "For example : http://localhost:30120 ", "");
+                serverip = Microsoft.VisualBasic.Interaction.InputBox("Please write server ip and port", "For example : http://localhost:30120 ", "http://localhost:30120");
                 if (serverip.Contains(":"))
                 {
                     Settings.Default.ServerIP = serverip;
@@ -701,12 +707,12 @@ namespace FxControl
             if (oneSyncCheck.Checked)
             {
                 Settings.Default.OneSyncCheck = true;
-                argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec server.cfg +set onesync_enabled 1";
+                argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec " + cfgfilename + " +set onesync_enabled 1";
             }
             else
             {
                 Settings.Default.OneSyncCheck = false;
-                argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec server.cfg";
+                argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec " + cfgfilename;
             }
             Settings.Default.Save();
         }
@@ -747,10 +753,7 @@ namespace FxControl
 
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            if (maskedTextBox1.Text == "")
-            {
-                maskedTextBox1.Text = "1";
-            }
+            
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -772,6 +775,15 @@ namespace FxControl
             Settings.Default.hashforkick = "";
             Settings.Default.Save();
             hashCreate();
+        }
+
+        private void maskedTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (maskedTextBox1.Text == "")
+            {
+                maskedTextBox1.Text = "1";
+            }
+            kalansure = int.Parse(maskedTextBox1.Text);
         }
 
         private void button5_Click(object sender, EventArgs e)

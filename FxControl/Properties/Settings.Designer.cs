@@ -166,5 +166,17 @@ namespace FxControl.Properties {
                 this["ServerRestartMessage"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string cfgfilename {
+            get {
+                return ((string)(this["cfgfilename"]));
+            }
+            set {
+                this["cfgfilename"] = value;
+            }
+        }
     }
 }

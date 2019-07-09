@@ -56,6 +56,9 @@ namespace FxControl
             this.btnStartServer = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.txtServerRestartMessage = new System.Windows.Forms.TextBox();
             this.lblSelectLanguage = new System.Windows.Forms.Label();
             this.cmbSelectLanguage = new System.Windows.Forms.ComboBox();
             this.chckBoxEnableServerLogs = new System.Windows.Forms.CheckBox();
@@ -106,9 +109,6 @@ namespace FxControl
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnShowLogs = new System.Windows.Forms.Button();
             this.richTxtLogScreen = new System.Windows.Forms.RichTextBox();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.txtServerRestartMessage = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -117,6 +117,7 @@ namespace FxControl
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -130,7 +131,6 @@ namespace FxControl
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -208,6 +208,7 @@ namespace FxControl
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
             this.maskedTextBox1.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
+            this.maskedTextBox1.TextChanged += new System.EventHandler(this.maskedTextBox1_TextChanged);
             // 
             // txtduyuru
             // 
@@ -325,6 +326,26 @@ namespace FxControl
             resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.button5);
+            this.groupBox11.Controls.Add(this.txtServerRestartMessage);
+            resources.ApplyResources(this.groupBox11, "groupBox11");
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.TabStop = false;
+            // 
+            // button5
+            // 
+            resources.ApplyResources(this.button5, "button5");
+            this.button5.Name = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // txtServerRestartMessage
+            // 
+            resources.ApplyResources(this.txtServerRestartMessage, "txtServerRestartMessage");
+            this.txtServerRestartMessage.Name = "txtServerRestartMessage";
             // 
             // lblSelectLanguage
             // 
@@ -699,26 +720,6 @@ namespace FxControl
             this.richTxtLogScreen.Name = "richTxtLogScreen";
             this.richTxtLogScreen.ReadOnly = true;
             // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.button5);
-            this.groupBox11.Controls.Add(this.txtServerRestartMessage);
-            resources.ApplyResources(this.groupBox11, "groupBox11");
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.TabStop = false;
-            // 
-            // txtServerRestartMessage
-            // 
-            resources.ApplyResources(this.txtServerRestartMessage, "txtServerRestartMessage");
-            this.txtServerRestartMessage.Name = "txtServerRestartMessage";
-            // 
-            // button5
-            // 
-            resources.ApplyResources(this.button5, "button5");
-            this.button5.Name = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // Form1
             // 
             this.AcceptButton = this.btnAddTimeToList;
@@ -743,6 +744,8 @@ namespace FxControl
             this.tabPage2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
@@ -760,8 +763,6 @@ namespace FxControl
             this.contextMenuStrip2.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
             this.ResumeLayout(false);
 
         }
