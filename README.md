@@ -5,15 +5,12 @@ https://youtu.be/kc34EwKI7sg
 
 
 ## Requirement :
-Updated : 25.06.2019 // please read readme for ScaleformAnnouncements
-https://github.com/abdulkadiraktas/ScaleformAnnouncements
+Updated : 10.07.2019 // please read readme for AnnonForFxController
+https://github.com/abdulkadiraktas/AnnonForFxController
 
-Released : https://github.com/abdulkadiraktas/FxServerController/releases/tag/v5
+last Release : https://github.com/abdulkadiraktas/FxServerController/releases/tag/V7
 
-I created application for server Controller.
-
-**Requirement Update date : 25.06.2019** : 
-https://github.com/abdulkadiraktas/ScaleformAnnouncements
+I created application for server Controller. 
 
 Features :
 
@@ -39,7 +36,7 @@ https://forum.fivem.net/uploads/default/original/3X/5/4/54d5a9919dc6afbc8b47eaa2
  
 
 ## Forum link : 
-# https://forum.fivem.net/t/release-fx-controller-windows-one-sync-support/
+# https://forum.fivem.net/t/release-fx-server-controller-windows-one-sync-support/
 
 # Thank you @TanguyOrtegat
 
