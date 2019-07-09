@@ -215,7 +215,7 @@ namespace FxControl
                     {
                         DateTime sure = DateTime.Parse(lstBoxTiming.Items[i].ToString());
                         DateTime sure2 = DateTime.Now.AddSeconds(Double.Parse(kalansure.ToString()));
-                        if (sure2.ToString("HH:mm:ss") == sure.ToString("HH:mm:ss"))
+                        if (int.Parse(sure2.ToString("HH:mm:ss")) >= int.Parse(sure.ToString("HH:mm:ss")))
                         {
                          await  Ress("announce " + txtHash.Text + " 1 2", txtduyuru.Text + " " + kalansure, "");
                             kalansure = kalansure - 5;
