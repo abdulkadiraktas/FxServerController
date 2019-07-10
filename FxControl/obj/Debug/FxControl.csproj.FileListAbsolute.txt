@@ -33,3 +33,4 @@ D:\Git\FxServerController\FxControl\obj\Debug\fr-FR\FxControl.resources.dll
 D:\Git\FxServerController\FxControl\obj\Debug\FxControl.csproj.CopyComplete
 D:\Git\FxServerController\FxControl\obj\Debug\FxControl.exe
 D:\Git\FxServerController\FxControl\obj\Debug\FxControl.pdb
+D:\Git\FxServerController\FxControl\obj\Debug\FxControl.csprojAssemblyReference.cache
