@@ -214,6 +214,7 @@ namespace FxControl
             // 
             resources.ApplyResources(this.txtduyuru, "txtduyuru");
             this.txtduyuru.Name = "txtduyuru";
+            this.txtduyuru.TextChanged += new System.EventHandler(this.txtduyuru_TextChanged);
             // 
             // button3
             // 

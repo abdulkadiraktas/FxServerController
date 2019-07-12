@@ -219,7 +219,7 @@ namespace FxControl
                         
                         if (sure2.ToString("HH:mm:ss") == sure.ToString("HH:mm:ss"))
                         {
-                         await  Ress("announce " + txtHash.Text + " 1 2", txtduyuru.Text + " " + kalansure, "");
+                         await  Ress("announce " + txtHash.Text + " 1 2 ", txtduyuru.Text + " " + kalansure, "");
                             kalansure = kalansure - 5;
                         }
 
@@ -786,6 +786,11 @@ namespace FxControl
                 maskedTextBox1.Text = "1";
             }
             kalansure = int.Parse(maskedTextBox1.Text);
+        }
+
+        private void txtduyuru_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void button5_Click(object sender, EventArgs e)
