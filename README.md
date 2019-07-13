@@ -26,6 +26,7 @@ Features :
 - Server cache file refresh.
 - Log screen hide/show
 - Multi language : TR/EN/FR
+- Server restart on server crash
 
 
 https://forum.fivem.net/uploads/default/original/3X/b/d/bdaec952d0a9eb5fd32313aa61db3e5a7223fd26.png
