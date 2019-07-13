@@ -179,7 +179,7 @@ namespace FxControl
             resources.ApplyResources(this.button4, "button4");
             this.button4.Name = "button4";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // txtHash
             // 
@@ -207,8 +207,8 @@ namespace FxControl
             resources.ApplyResources(this.maskedTextBox1, "maskedTextBox1");
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
-            this.maskedTextBox1.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
-            this.maskedTextBox1.TextChanged += new System.EventHandler(this.maskedTextBox1_TextChanged);
+            this.maskedTextBox1.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.MaskedTextBox1_MaskInputRejected);
+            this.maskedTextBox1.TextChanged += new System.EventHandler(this.MaskedTextBox1_TextChanged);
             // 
             // txtduyuru
             // 
@@ -221,7 +221,7 @@ namespace FxControl
             resources.ApplyResources(this.button3, "button3");
             this.button3.Name = "button3";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // label6
             // 
@@ -233,7 +233,7 @@ namespace FxControl
             resources.ApplyResources(this.annonCheck, "annonCheck");
             this.annonCheck.Name = "annonCheck";
             this.annonCheck.UseVisualStyleBackColor = true;
-            this.annonCheck.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.annonCheck.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
             // 
             // btnClearTimerList
             // 
@@ -341,7 +341,7 @@ namespace FxControl
             resources.ApplyResources(this.button5, "button5");
             this.button5.Name = "button5";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
             // txtServerRestartMessage
             // 
@@ -399,7 +399,7 @@ namespace FxControl
             resources.ApplyResources(this.oneSyncCheck, "oneSyncCheck");
             this.oneSyncCheck.Name = "oneSyncCheck";
             this.oneSyncCheck.UseVisualStyleBackColor = true;
-            this.oneSyncCheck.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.oneSyncCheck.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
             // txtServerIp
             // 
@@ -411,7 +411,7 @@ namespace FxControl
             resources.ApplyResources(this.button2, "button2");
             this.button2.Name = "button2";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // label4
             // 
@@ -567,7 +567,7 @@ namespace FxControl
             resources.ApplyResources(this.checkBox1, "checkBox1");
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_1);
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged_1);
             // 
             // btnRefreshServer
             // 
@@ -613,7 +613,7 @@ namespace FxControl
             // 
             resources.ApplyResources(this.errorText, "errorText");
             this.errorText.Name = "errorText";
-            this.errorText.TextChanged += new System.EventHandler(this.errorText_TextChanged);
+            this.errorText.TextChanged += new System.EventHandler(this.ErrorText_TextChanged);
             // 
             // tabPage5
             // 
@@ -660,13 +660,13 @@ namespace FxControl
             // 
             this.kickToolStripMenuItem.Name = "kickToolStripMenuItem";
             resources.ApplyResources(this.kickToolStripMenuItem, "kickToolStripMenuItem");
-            this.kickToolStripMenuItem.Click += new System.EventHandler(this.kickToolStripMenuItem_Click);
+            this.kickToolStripMenuItem.Click += new System.EventHandler(this.KickToolStripMenuItem_Click);
             // 
             // banToolStripMenuItem
             // 
             this.banToolStripMenuItem.Name = "banToolStripMenuItem";
             resources.ApplyResources(this.banToolStripMenuItem, "banToolStripMenuItem");
-            this.banToolStripMenuItem.Click += new System.EventHandler(this.banToolStripMenuItem_Click);
+            this.banToolStripMenuItem.Click += new System.EventHandler(this.BanToolStripMenuItem_Click);
             // 
             // groupBox9
             // 
@@ -680,7 +680,7 @@ namespace FxControl
             // 
             resources.ApplyResources(this.txtPlayerSearch, "txtPlayerSearch");
             this.txtPlayerSearch.Name = "txtPlayerSearch";
-            this.txtPlayerSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtPlayerSearch.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // label1
             // 
@@ -693,7 +693,7 @@ namespace FxControl
             resources.ApplyResources(this.button1, "button1");
             this.button1.Name = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // timer1
             // 
