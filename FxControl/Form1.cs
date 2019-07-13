@@ -74,7 +74,7 @@ namespace FxControl
                 }
                 else
                 {
-                    this.Close();
+                    Close();
                 }
             }
             else
@@ -97,12 +97,12 @@ namespace FxControl
                     Settings.Default.cfgfilename = conf.SafeFileName;
                     Settings.Default.ServerConfigLocation = conf.FileName;
                     Settings.Default.Save();
-                    cfgfilename = conf.SafeFileName; 
+                    cfgfilename = conf.SafeFileName;
                     txtServerCfgLocation.Text = Settings.Default.ServerConfigLocation;
                 }
                 else
                 {
-                    this.Close(); 
+                    Close();
                 }
             }
             else
@@ -143,7 +143,7 @@ namespace FxControl
             }
         }
 
-        private void hashCreate()
+        private void HashCreate()
         {
             if (string.IsNullOrWhiteSpace(Settings.Default.hashforkick))
             {
@@ -188,7 +188,7 @@ namespace FxControl
             Fxselectlocation();
             Configselectlocation();
             SetupServerLog();
-            serveripsave();
+            Serveripsave();
             chckBoxClearCache.Checked = Settings.Default.cache;
             chckBoxEnableServerLogs.Checked = Settings.Default.EnableServerLogs;
             txtServerIp.Text = Settings.Default.ServerIP;
@@ -196,7 +196,7 @@ namespace FxControl
             annonCheck.Checked = Settings.Default.duyuruCheck;
             annonCheck.Checked = !annonCheck.Checked;
             annonCheck.Checked = !annonCheck.Checked;
-            hashCreate();
+            HashCreate();
             txtServerRestartMessage.Text = Settings.Default.ServerRestartMessage;
         }
 
@@ -215,8 +215,7 @@ namespace FxControl
                     {
                         DateTime sure = DateTime.Parse(lstBoxTiming.Items[i].ToString());
                         DateTime sure2 = DateTime.Now.AddSeconds(Double.Parse(kalansure.ToString()));
-                        this.Text= (sure - sure2).ToString();// sure.ToString("HH:mm:ss") + " " + sure2.ToString("HH:mm:ss");
-                        
+                        Text= (sure - sure2).ToString();// sure.ToString("HH:mm:ss") + " " + sure2.ToString("HH:mm:ss");
                         if (sure2.ToString("HH:mm:ss") == sure.ToString("HH:mm:ss"))
                         {
                          await  Ress("announce " + txtHash.Text + " 1 2", txtduyuru.Text + " " + kalansure, "");
@@ -242,8 +241,8 @@ namespace FxControl
                     count = 0;
                     //Thread addDatathread = new Thread(async () =>
                     //await serverInfo());
-                    //addDatathread.Start();                    
-                    await serverInfo();
+                    //addDatathread.Start();
+                    await ServerInfo();
                 }
             }
             else
@@ -286,7 +285,7 @@ namespace FxControl
         {
             kalansure = int.Parse(maskedTextBox1.Text);
             StopServer();
-           await Task.Delay(2000);
+            await Task.Delay(2000);
             StartServer();
             timer1.Start();
         }
@@ -393,6 +392,11 @@ namespace FxControl
                     //AddData(e.Data.Replace("Started resource", "").Trim()));
                     //addDatathread.Start();
                     await AddData(e.Data.Replace("Started resource", "").Trim());
+                }
+                else if (e.Data.Contains("A minidump can be found at"))
+                {
+                    richTxtLogScreen.Text = string.Empty;
+                    OnRestart();
                 }
                 if (!ServerStarted)
                 {
@@ -568,15 +572,15 @@ namespace FxControl
             if (richTxtLogScreen.Visible)
             {
                 richTxtLogScreen.Hide();
-                this.MinimumSize = new Size(465, 460);
-                this.MaximumSize = new Size(465, 860);
-                this.Size = new Size(465, 460);
+                MinimumSize = new Size(465, 460);
+                MaximumSize = new Size(465, 860);
+                Size = new Size(465, 460);
             }
             else
             {
                 richTxtLogScreen.Show();
-                this.Size = new Size(829, 460);
-                this.MinimumSize = new Size(829, 460);
+                Size = new Size(829, 460);
+                MinimumSize = new Size(829, 460);
             }
         }
 
@@ -625,7 +629,7 @@ namespace FxControl
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void TextBox1_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -636,7 +640,7 @@ namespace FxControl
             }
         }
 
-        private void serveripsave()
+        private void Serveripsave()
         {
             if (string.IsNullOrWhiteSpace(Settings.Default.ServerIP))
             {
@@ -651,7 +655,7 @@ namespace FxControl
                 else
                 {
                     MessageBox.Show("Please write server ip and port For example : http://localhost:30120");
-                    this.Close();
+                    Close();
                     //serveripsave();
                 }
 
@@ -662,7 +666,7 @@ namespace FxControl
             }
         }
 
-        private void kickToolStripMenuItem_Click(object sender, EventArgs e)
+        private void KickToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string reason;
             reason = Microsoft.VisualBasic.Interaction.InputBox("Please write reason", "Kick Reason", "");
@@ -672,17 +676,17 @@ namespace FxControl
             }
         }
 
-        private void banToolStripMenuItem_Click(object sender, EventArgs e)
-        { 
+        private void BanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             Ress("banplayerforfxcontroller", txtHash.Text + " " + dataGridView2.SelectedRows[0].Cells[1].Value.ToString(), "Uzaklaştırıldın..");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            allKick();
+            AllKick();
         }
 
-        private void allKick()
+        private void AllKick()
         {
             DialogResult allKick = new DialogResult();
             allKick = MessageBox.Show("Kick all users?", "Warning", MessageBoxButtons.YesNo);
@@ -698,13 +702,13 @@ namespace FxControl
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             Settings.Default.ServerIP = txtServerIp.Text;
             Settings.Default.Save();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (oneSyncCheck.Checked)
             {
@@ -719,7 +723,7 @@ namespace FxControl
             Settings.Default.Save();
         }
 
-        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        private void CheckBox1_CheckedChanged_1(object sender, EventArgs e)
         {
             if (checkBox1.Checked)
             {
@@ -731,11 +735,11 @@ namespace FxControl
             }
         }
 
-        private void errorText_TextChanged(object sender, EventArgs e)
+        private void ErrorText_TextChanged(object sender, EventArgs e)
         {
         }
 
-        private Task addPlayer(string data, string id, string ping)
+        private Task AddPlayer(string data, string id, string ping)
         {
             try
             {
@@ -753,12 +757,11 @@ namespace FxControl
             return Task.CompletedTask;
         }
 
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void MaskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
             if (annonCheck.Checked)
             {
@@ -772,14 +775,14 @@ namespace FxControl
             Settings.Default.Save();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
             Settings.Default.hashforkick = "";
             Settings.Default.Save();
-            hashCreate();
+            HashCreate();
         }
 
-        private void maskedTextBox1_TextChanged(object sender, EventArgs e)
+        private void MaskedTextBox1_TextChanged(object sender, EventArgs e)
         {
             if (maskedTextBox1.Text == "")
             {
@@ -788,7 +791,7 @@ namespace FxControl
             kalansure = int.Parse(maskedTextBox1.Text);
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtServerRestartMessage.Text))
             {
@@ -797,13 +800,13 @@ namespace FxControl
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             Settings.Default.duyuru = txtduyuru.Text;
             Settings.Default.Save();
         }
 
-        private async Task serverInfo()
+        private async Task ServerInfo()
         {
             try
             {
@@ -828,7 +831,7 @@ namespace FxControl
                         //Thread addPlayerDatathread = new Thread(() =>
                         //addPlayer(name, id, ping));
                         //addPlayerDatathread.Start();
-                        await addPlayer(name, id, ping);
+                        await AddPlayer(name, id, ping);
                     }
                 }
                 catch (Exception)
