@@ -83,7 +83,6 @@ namespace FxControl
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtSearchResource = new System.Windows.Forms.TextBox();
             this.lblSearchresource = new System.Windows.Forms.Label();
@@ -109,6 +108,7 @@ namespace FxControl
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnShowLogs = new System.Windows.Forms.Button();
             this.richTxtLogScreen = new System.Windows.Forms.RichTextBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -213,7 +213,7 @@ namespace FxControl
             // txtduyuru
             // 
             resources.ApplyResources(this.txtduyuru, "txtduyuru");
-            this.txtduyuru.Name = "txtduyuru"; 
+            this.txtduyuru.Name = "txtduyuru";
             // 
             // button3
             // 
@@ -509,8 +509,7 @@ namespace FxControl
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stopToolStripMenuItem,
-            this.restartToolStripMenuItem,
-            this.toolStripMenuItem2});
+            this.restartToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
             // 
@@ -525,11 +524,6 @@ namespace FxControl
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
             resources.ApplyResources(this.restartToolStripMenuItem, "restartToolStripMenuItem");
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.RestartToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             // 
             // groupBox7
             // 
@@ -604,6 +598,7 @@ namespace FxControl
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.errorText);
+            this.tabPage3.Controls.Add(this.button6);
             resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -719,6 +714,13 @@ namespace FxControl
             this.richTxtLogScreen.ForeColor = System.Drawing.Color.White;
             this.richTxtLogScreen.Name = "richTxtLogScreen";
             this.richTxtLogScreen.ReadOnly = true;
+            // 
+            // button6
+            // 
+            resources.ApplyResources(this.button6, "button6");
+            this.button6.Name = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form1
             // 
@@ -838,7 +840,6 @@ namespace FxControl
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox annonCheck;
         private System.Windows.Forms.TextBox txtHash;
@@ -846,6 +847,7 @@ namespace FxControl
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox txtServerRestartMessage;
+        private System.Windows.Forms.Button button6;
     }
 }
 

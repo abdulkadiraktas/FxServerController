@@ -380,7 +380,7 @@ namespace FxControl
                 }
                 else if (e.Data.Contains("Couldn't") || e.Data.Contains("Error"))
                 {
-                    Invoke(new Action(() => errorText.AppendText(Environment.NewLine + Environment.NewLine + e.Data)));
+                    Invoke(new Action(() => errorText.AppendText(Environment.NewLine + Environment.NewLine + String.Format("{0:MM/dd/yyyy}-{0:HH:mm:ss}", DateTime.Now) + " / " + e.Data)));
                     Invoke(new Action(() => errorText.ScrollToCaret()));
                 }
                 else if (e.Data.Contains("Started resource"))
@@ -789,6 +789,11 @@ namespace FxControl
                 maskedTextBox1.Text = "1";
             }
             kalansure = int.Parse(maskedTextBox1.Text);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            errorText.Text = "";
         }
 
         private void Button5_Click(object sender, EventArgs e)
