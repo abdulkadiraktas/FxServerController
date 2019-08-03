@@ -151,7 +151,7 @@
     <value>Restart</value>
   </data>
   <data name="btnSendCommand.Text" xml:space="preserve">
-    <value>Send command</value>
+    <value>Wyślij polecenie</value>
   </data>
   <data name="btnShowLogs.Text" xml:space="preserve">
     <value>Pokaż / ukryj ekran dziennika</value>
