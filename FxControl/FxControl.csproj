@@ -84,6 +84,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.tr-TR.resx" />
     <EmbeddedResource Include="Form1.fr-FR.resx" />
+    <EmbeddedResource Include="Form1.pl-PL.resx" />
     <None Include="app.manifest">
       <SubType>Designer</SubType>
     </None>

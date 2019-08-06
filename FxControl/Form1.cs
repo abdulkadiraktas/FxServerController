@@ -41,9 +41,10 @@ namespace FxControl
             InitializeComponent();
             var dataSource = new List<Language>
             {
-                new Language() { Name = "Français", Value = "fr-FR" },
+                new Language() { Name = "FranÃ§ais", Value = "fr-FR" },
                 new Language() { Name = "English", Value = "en-US" },
-                new Language() { Name = "Türkçe", Value = "tr-TR" }
+                new Language() { Name = "TÃ¼rkÃ§e", Value = "tr-TR" },
+                new Language() { Name = "Polski", Value = "pl-PL" }
             };
             cmbSelectLanguage.DataSource = dataSource;
             cmbSelectLanguage.DisplayMember = "Name";
@@ -678,7 +679,7 @@ namespace FxControl
 
         private void BanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Ress("banplayerforfxcontroller", txtHash.Text + " " + dataGridView2.SelectedRows[0].Cells[1].Value.ToString(), "Uzaklaþtýrýldýn..");
+            Ress("banplayerforfxcontroller", txtHash.Text + " " + dataGridView2.SelectedRows[0].Cells[1].Value.ToString(), "UzaklaÃ¾tÃ½rÃ½ldÃ½n..");
         }
 
         private void Button1_Click(object sender, EventArgs e)
