@@ -379,7 +379,7 @@ namespace FxControl
                     btnStartServer.BackColor = Color.Green;
 
                 }
-                else if (e.Data.Contains("Couldn't") || e.Data.Contains("Error"))
+                else if (e.Data.ToLower().Contains("couldn't") || e.Data.ToLower().Contains("error"))
                 {
                     Invoke(new Action(() => errorText.AppendText(Environment.NewLine + Environment.NewLine + String.Format("{0:MM/dd/yyyy}-{0:HH:mm:ss}", DateTime.Now) + " / " + e.Data)));
                     Invoke(new Action(() => errorText.ScrollToCaret()));
