@@ -57,3 +57,4 @@ D:\Git\FxServerController\FxControl\bin\Debug\tr-TR\FxControl.resources.dll
 D:\Git\FxServerController\FxControl\bin\Debug\fr-FR\FxControl.resources.dll
 D:\Git\FxServerController\FxControl\bin\Debug\pl-PL\FxControl.resources.dll
 D:\Git\FxServerController\FxControl\obj\Debug\FxControl.csproj.CopyComplete
+D:\git\FxServerController\FxControl\obj\Debug\FxControl.csprojAssemblyReference.cache
