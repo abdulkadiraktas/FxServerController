@@ -8,7 +8,7 @@ https://youtu.be/kc34EwKI7sg
 Updated : 10.07.2019 // please read readme for AnnonForFxController
 https://github.com/abdulkadiraktas/AnnonForFxController
 
-last Release : https://github.com/abdulkadiraktas/FxServerController/releases/tag/V7
+last Release : https://github.com/abdulkadiraktas/FxServerController/releases/latest
 
 I created application for server Controller. 
 
