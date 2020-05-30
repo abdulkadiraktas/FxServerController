@@ -37,7 +37,7 @@ https://forum.fivem.net/uploads/default/original/3X/5/4/54d5a9919dc6afbc8b47eaa2
  
 
 ## Forum link : 
-# https://forum.fivem.net/t/release-fx-server-controller-windows-one-sync-support/
+# https://forum.cfx.re/t/release-windows-fx-server-controller-updated-13-07-2019
 
 # Thank you @TanguyOrtegat
 
