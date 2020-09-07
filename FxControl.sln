@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFXREControl", "FxControl\CFXREControl.csproj", "{0373D70B-2B8A-4C00-A480-713BA4C935A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FxControl", "FxControl\FxControl.csproj", "{0373D70B-2B8A-4C00-A480-713BA4C935A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

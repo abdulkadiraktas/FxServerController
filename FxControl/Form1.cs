@@ -1,4 +1,4 @@
-using CFXREControl.Properties;
+using FxControl.Properties;
 using System;
 using System.Collections;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using CFXREControl.Properties;
+﻿using FxControl.Properties;
 
 namespace FxControl
 {
