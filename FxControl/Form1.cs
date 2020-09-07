@@ -1,4 +1,4 @@
-using FxControl.Properties;
+using CFXREControl.Properties;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -603,7 +603,7 @@ namespace FxControl
                 richTxtLogScreen.Hide();
                 MinimumSize = new Size(490, 708);
                 MaximumSize = new Size(490, 708);
-                Size = new Size(490, 460);
+                Size = new Size(490, 708);
             }
             else
             {

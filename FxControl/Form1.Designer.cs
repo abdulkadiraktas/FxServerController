@@ -1,4 +1,4 @@
-﻿using FxControl.Properties;
+﻿using CFXREControl.Properties;
 
 namespace FxControl
 {
@@ -34,6 +34,7 @@ namespace FxControl
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
@@ -55,9 +56,9 @@ namespace FxControl
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnRestartServer = new System.Windows.Forms.Button();
             this.btnStopServer = new System.Windows.Forms.Button();
             this.btnStartServer = new System.Windows.Forms.Button();
+            this.btnRestartServer = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
@@ -68,6 +69,7 @@ namespace FxControl
             this.chckBoxEnableServerLogs = new System.Windows.Forms.CheckBox();
             this.chckBoxClearCache = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.OneSyncInfCheck = new System.Windows.Forms.CheckBox();
             this.oneSyncCheck = new System.Windows.Forms.CheckBox();
             this.txtServerIp = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -113,8 +115,6 @@ namespace FxControl
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnShowLogs = new System.Windows.Forms.Button();
             this.richTxtLogScreen = new System.Windows.Forms.RichTextBox();
-            this.OneSyncInfCheck = new System.Windows.Forms.CheckBox();
-            this.button7 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -162,6 +162,13 @@ namespace FxControl
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            resources.ApplyResources(this.button7, "button7");
+            this.button7.Name = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click_1);
             // 
             // groupBox2
             // 
@@ -316,16 +323,6 @@ namespace FxControl
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
-            // btnRestartServer
-            // 
-            resources.ApplyResources(this.btnRestartServer, "btnRestartServer");
-            this.btnRestartServer.FlatAppearance.BorderSize = 0;
-            this.btnRestartServer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Coral;
-            this.btnRestartServer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
-            this.btnRestartServer.Name = "btnRestartServer";
-            this.btnRestartServer.UseVisualStyleBackColor = true;
-            this.btnRestartServer.Click += new System.EventHandler(this.BtnRestartServer_Click);
-            // 
             // btnStopServer
             // 
             resources.ApplyResources(this.btnStopServer, "btnStopServer");
@@ -345,6 +342,16 @@ namespace FxControl
             this.btnStartServer.Name = "btnStartServer";
             this.btnStartServer.UseVisualStyleBackColor = true;
             this.btnStartServer.Click += new System.EventHandler(this.BtnStartServer_Click);
+            // 
+            // btnRestartServer
+            // 
+            resources.ApplyResources(this.btnRestartServer, "btnRestartServer");
+            this.btnRestartServer.FlatAppearance.BorderSize = 0;
+            this.btnRestartServer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Coral;
+            this.btnRestartServer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
+            this.btnRestartServer.Name = "btnRestartServer";
+            this.btnRestartServer.UseVisualStyleBackColor = true;
+            this.btnRestartServer.Click += new System.EventHandler(this.BtnRestartServer_Click);
             // 
             // tabPage2
             // 
@@ -431,6 +438,13 @@ namespace FxControl
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // OneSyncInfCheck
+            // 
+            resources.ApplyResources(this.OneSyncInfCheck, "OneSyncInfCheck");
+            this.OneSyncInfCheck.Name = "OneSyncInfCheck";
+            this.OneSyncInfCheck.UseVisualStyleBackColor = true;
+            this.OneSyncInfCheck.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged_1);
             // 
             // oneSyncCheck
             // 
@@ -761,20 +775,6 @@ namespace FxControl
             this.richTxtLogScreen.ForeColor = System.Drawing.Color.White;
             this.richTxtLogScreen.Name = "richTxtLogScreen";
             this.richTxtLogScreen.ReadOnly = true;
-            // 
-            // OneSyncInfCheck
-            // 
-            resources.ApplyResources(this.OneSyncInfCheck, "OneSyncInfCheck");
-            this.OneSyncInfCheck.Name = "OneSyncInfCheck";
-            this.OneSyncInfCheck.UseVisualStyleBackColor = true;
-            this.OneSyncInfCheck.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged_1);
-            // 
-            // button7
-            // 
-            resources.ApplyResources(this.button7, "button7");
-            this.button7.Name = "button7";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click_1);
             // 
             // Form1
             // 
