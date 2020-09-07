@@ -215,6 +215,10 @@ namespace FxControl
             HashCreate();
             txtServerRestartMessage.Text = Settings.Default.ServerRestartMessage;
             argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec " + cfgfilename;
+            richTxtLogScreen.Hide();
+            MinimumSize = new Size(490, 708);
+            MaximumSize = new Size(490, 708);
+            Size = new Size(490, 708);
         }
 
         private async void Timer1_Tick(object sender, EventArgs e)
@@ -871,6 +875,11 @@ namespace FxControl
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTxtLogScreen_TextChanged(object sender, EventArgs e)
         {
 
         }

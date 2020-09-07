@@ -775,6 +775,7 @@ namespace FxControl
             this.richTxtLogScreen.ForeColor = System.Drawing.Color.White;
             this.richTxtLogScreen.Name = "richTxtLogScreen";
             this.richTxtLogScreen.ReadOnly = true;
+            this.richTxtLogScreen.TextChanged += new System.EventHandler(this.richTxtLogScreen_TextChanged);
             // 
             // Form1
             // 
