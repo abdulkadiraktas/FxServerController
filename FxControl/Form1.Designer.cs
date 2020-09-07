@@ -50,6 +50,10 @@ namespace FxControl
             this.lstBoxTiming = new System.Windows.Forms.ListBox();
             this.btnAddTimeToList = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblcurrentgame = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnRestartServer = new System.Windows.Forms.Button();
             this.btnStopServer = new System.Windows.Forms.Button();
@@ -94,6 +98,7 @@ namespace FxControl
             this.btnSendCommand = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.errorText = new System.Windows.Forms.RichTextBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -108,12 +113,15 @@ namespace FxControl
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnShowLogs = new System.Windows.Forms.Button();
             this.richTxtLogScreen = new System.Windows.Forms.RichTextBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.OneSyncInfCheck = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -136,10 +144,10 @@ namespace FxControl
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage2);
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -147,6 +155,7 @@ namespace FxControl
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.panel2);
             this.tabPage1.Controls.Add(this.groupBox1);
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
@@ -269,41 +278,68 @@ namespace FxControl
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.ShowUpDown = true;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblcurrentgame);
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Controls.Add(this.pictureBox1);
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Name = "panel2";
+            // 
+            // lblcurrentgame
+            // 
+            resources.ApplyResources(this.lblcurrentgame, "lblcurrentgame");
+            this.lblcurrentgame.Name = "lblcurrentgame";
+            // 
+            // pictureBox2
+            // 
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnRestartServer);
             this.groupBox1.Controls.Add(this.btnStopServer);
             this.groupBox1.Controls.Add(this.btnStartServer);
+            this.groupBox1.Controls.Add(this.btnRestartServer);
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
             // btnRestartServer
             // 
+            resources.ApplyResources(this.btnRestartServer, "btnRestartServer");
             this.btnRestartServer.FlatAppearance.BorderSize = 0;
             this.btnRestartServer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Coral;
             this.btnRestartServer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
-            resources.ApplyResources(this.btnRestartServer, "btnRestartServer");
             this.btnRestartServer.Name = "btnRestartServer";
             this.btnRestartServer.UseVisualStyleBackColor = true;
             this.btnRestartServer.Click += new System.EventHandler(this.BtnRestartServer_Click);
             // 
             // btnStopServer
             // 
+            resources.ApplyResources(this.btnStopServer, "btnStopServer");
             this.btnStopServer.FlatAppearance.BorderSize = 0;
             this.btnStopServer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Coral;
             this.btnStopServer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
-            resources.ApplyResources(this.btnStopServer, "btnStopServer");
             this.btnStopServer.Name = "btnStopServer";
             this.btnStopServer.UseVisualStyleBackColor = true;
             this.btnStopServer.Click += new System.EventHandler(this.BtnStopServer_Click);
             // 
             // btnStartServer
             // 
+            resources.ApplyResources(this.btnStartServer, "btnStartServer");
             this.btnStartServer.FlatAppearance.BorderSize = 0;
             this.btnStartServer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Coral;
             this.btnStartServer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
-            resources.ApplyResources(this.btnStartServer, "btnStartServer");
             this.btnStartServer.Name = "btnStartServer";
             this.btnStartServer.UseVisualStyleBackColor = true;
             this.btnStartServer.Click += new System.EventHandler(this.BtnStartServer_Click);
@@ -376,6 +412,7 @@ namespace FxControl
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.OneSyncInfCheck);
             this.groupBox3.Controls.Add(this.oneSyncCheck);
             this.groupBox3.Controls.Add(this.txtServerIp);
             this.groupBox3.Controls.Add(this.button2);
@@ -498,7 +535,6 @@ namespace FxControl
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             resources.ApplyResources(this.dataGridView1, "dataGridView1");
-            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
@@ -609,6 +645,13 @@ namespace FxControl
             this.errorText.Name = "errorText";
             this.errorText.TextChanged += new System.EventHandler(this.ErrorText_TextChanged);
             // 
+            // button6
+            // 
+            resources.ApplyResources(this.button6, "button6");
+            this.button6.Name = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.groupBox8);
@@ -710,17 +753,19 @@ namespace FxControl
             // richTxtLogScreen
             // 
             this.richTxtLogScreen.BackColor = System.Drawing.Color.Black;
+            this.richTxtLogScreen.BorderStyle = System.Windows.Forms.BorderStyle.None;
             resources.ApplyResources(this.richTxtLogScreen, "richTxtLogScreen");
+            this.richTxtLogScreen.EnableAutoDragDrop = true;
             this.richTxtLogScreen.ForeColor = System.Drawing.Color.White;
             this.richTxtLogScreen.Name = "richTxtLogScreen";
             this.richTxtLogScreen.ReadOnly = true;
             // 
-            // button6
+            // OneSyncInfCheck
             // 
-            resources.ApplyResources(this.button6, "button6");
-            this.button6.Name = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            resources.ApplyResources(this.OneSyncInfCheck, "OneSyncInfCheck");
+            this.OneSyncInfCheck.Name = "OneSyncInfCheck";
+            this.OneSyncInfCheck.UseVisualStyleBackColor = true;
+            this.OneSyncInfCheck.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged_1);
             // 
             // Form1
             // 
@@ -728,8 +773,8 @@ namespace FxControl
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.btnShowLogs);
             this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.btnShowLogs);
             this.Controls.Add(this.richTxtLogScreen);
             this.DoubleBuffered = true;
             this.Name = "Form1";
@@ -742,6 +787,9 @@ namespace FxControl
             this.groupBox10.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -848,6 +896,11 @@ namespace FxControl
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox txtServerRestartMessage;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblcurrentgame;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.CheckBox OneSyncInfCheck;
     }
 }
 

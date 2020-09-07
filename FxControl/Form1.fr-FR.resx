@@ -198,4 +198,10 @@
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Paramètres</value>
   </data>
+  <data name="lblcurrentgame.Text" xml:space="preserve">
+    <value>&lt;- Select Game -&gt;</value>
+  </data>
+  <data name="selectedgame" xml:space="preserve">
+    <value>Current Game : </value>
+  </data>
 </root>

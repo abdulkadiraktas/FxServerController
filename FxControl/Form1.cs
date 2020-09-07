@@ -20,17 +20,20 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Resources;
 
 namespace FxControl
 {
     public partial class Form1 : Form
     {
         private Process _process;
-
+        
         DataTable dt, dt2;
         int count, kalansure;
         string cfgfilename;
         string argument;
+        ResourceManager rm = new ResourceManager("FxControl.Form1", Assembly.GetExecutingAssembly());
+        public string selectedgame = "";
 
         private Boolean _isFivemServerRunning, ServerStarted;
 
@@ -168,6 +171,7 @@ namespace FxControl
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            selectedgame = rm.GetString("selectedgame", CultureInfo.CurrentCulture);
             cfgfilename = Settings.Default.cfgfilename;
             if (Settings.Default.OneSyncCheck)
             {
@@ -179,6 +183,17 @@ namespace FxControl
                 oneSyncCheck.Checked = true;
                 oneSyncCheck.Checked = false;
             }
+            if (Settings.Default.OneSyncInfCheck)
+            {
+                OneSyncInfCheck.Checked = false;
+                OneSyncInfCheck.Checked = true;
+            }
+            else
+            {
+                OneSyncInfCheck.Checked = true;
+                OneSyncInfCheck.Checked = false;
+            }
+
             dt = new DataTable();
             dt2 = new DataTable();
             dt.Columns.Add("resource");
@@ -199,6 +214,7 @@ namespace FxControl
             annonCheck.Checked = !annonCheck.Checked;
             HashCreate();
             txtServerRestartMessage.Text = Settings.Default.ServerRestartMessage;
+            argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec " + cfgfilename;
         }
 
         private async void Timer1_Tick(object sender, EventArgs e)
@@ -249,7 +265,7 @@ namespace FxControl
             else
             {
                 CheckIfCrashed();
-                btnStartServer.Enabled = true;
+                //btnStartServer.Enabled = true;
                 btnStopServer.Enabled = false;
                 btnRestartServer.Enabled = false;
                 btnChangeServerLocation.Enabled = true;
@@ -370,7 +386,14 @@ namespace FxControl
         {
             if (e.Data != null)
             {
-                Invoke(new Action(() => richTxtLogScreen.AppendText(Environment.NewLine + e.Data)));
+                Invoke(new Action(() => richTxtLogScreen.AppendText(Environment.NewLine + e.Data
+                    .Replace("[94m", "")
+                    .Replace("[93m", "")
+                    .Replace("[36m", "")
+                    .Replace("[32m", "")
+                    .Replace("[0m", "")
+                    .Replace("", "")
+                    .Replace("[91m", ""))));
                 Invoke(new Action(() => richTxtLogScreen.ScrollToCaret()));
                 if (e.Data == "Server license key authentication succeeded. Welcome!")
                 {
@@ -486,15 +509,21 @@ namespace FxControl
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                Ress("stop", dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), "");
-                dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
+                for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
+                {
+                    Ress("stop", dataGridView1.SelectedRows[i].Cells[0].Value.ToString(), "");
+                    dataGridView1.Rows.Remove(dataGridView1.SelectedRows[i]);
+                }
             }
         }
 
         private void RestartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Ress("restart", dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), "");
-            dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
+            for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
+            {
+                Ress("restart", dataGridView1.SelectedRows[i].Cells[0].Value.ToString(), "");
+                dataGridView1.Rows.Remove(dataGridView1.SelectedRows[i]);
+            }
         }
 
         private void BtnChangeServerLocation_Click(object sender, EventArgs e)
@@ -569,19 +598,20 @@ namespace FxControl
 
         private void BtnShowLogs_Click(object sender, EventArgs e)
         {
-            //465; 453
+            //829; 708
+            //446; 348
             if (richTxtLogScreen.Visible)
             {
                 richTxtLogScreen.Hide();
-                MinimumSize = new Size(465, 460);
-                MaximumSize = new Size(465, 860);
-                Size = new Size(465, 460);
+                MinimumSize = new Size(466, 708);
+                MaximumSize = new Size(466, 708);
+                Size = new Size(466, 460);
             }
             else
             {
                 richTxtLogScreen.Show();
-                Size = new Size(829, 460);
-                MinimumSize = new Size(829, 460);
+                Size = new Size(829, 708);
+                MinimumSize = new Size(829, 708);
             }
         }
 
@@ -711,17 +741,7 @@ namespace FxControl
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (oneSyncCheck.Checked)
-            {
-                Settings.Default.OneSyncCheck = true;
-                argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec " + cfgfilename + " +set onesync_enabled 1";
-            }
-            else
-            {
-                Settings.Default.OneSyncCheck = false;
-                argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec " + cfgfilename;
-            }
-            Settings.Default.Save();
+            checkOneSync();
         }
 
         private void CheckBox1_CheckedChanged_1(object sender, EventArgs e)
@@ -797,6 +817,56 @@ namespace FxControl
             errorText.Text = "";
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            btnStartServer.Enabled = true;
+            lblcurrentgame.Text = selectedgame + " RDR3";
+            argument = Settings.Default.ServerExeLocation+ " +exec "+ cfgfilename + " +set gamename rdr3 ";
+        }
+         
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec " + cfgfilename;
+            btnStartServer.Enabled = true;
+            lblcurrentgame.Text = selectedgame + " GTA5";
+            checkOneSync();
+            checkInfOneSync();
+
+        }
+         
+        private void checkInfOneSync()
+        {
+            if (OneSyncInfCheck.Checked)
+            {
+                argument = argument + " +set onesync_enableInfinity true";
+                Settings.Default.OneSyncInfCheck = true;
+            }
+            else
+            {
+                argument = argument.Replace(" +set onesync_enableInfinity true", "");
+                Settings.Default.OneSyncInfCheck = false;
+            }
+            Settings.Default.Save();
+        }
+        private void checkOneSync()
+        {
+            if (oneSyncCheck.Checked)
+            {
+                Settings.Default.OneSyncCheck = true;
+                argument += " +set onesync legacy";
+            }
+            else
+            {
+                Settings.Default.OneSyncCheck = false;
+                argument = argument.Replace(" +set onesync legacy", "");
+            }
+            Settings.Default.Save();
+        }
+        private void checkBox2_CheckedChanged_1(object sender, EventArgs e)
+        {
+            checkInfOneSync();
+        }
+
         private void Button5_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtServerRestartMessage.Text))
@@ -844,10 +914,7 @@ namespace FxControl
                 {
 
                 }
-
             }
-            //http://35.204.151.166:30120/info.json
-            //http://35.204.151.166:30120/players.json
         }
     }
 }
