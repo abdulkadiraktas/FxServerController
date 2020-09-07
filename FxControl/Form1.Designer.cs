@@ -114,6 +114,7 @@ namespace FxControl
             this.btnShowLogs = new System.Windows.Forms.Button();
             this.richTxtLogScreen = new System.Windows.Forms.RichTextBox();
             this.OneSyncInfCheck = new System.Windows.Forms.CheckBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -144,16 +145,17 @@ namespace FxControl
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage2);
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button7);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.panel2);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -614,10 +616,10 @@ namespace FxControl
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             resources.GetString("comboBox1.Items"),
-            resources.GetString("comboBox1.Items1"),
-            resources.GetString("comboBox1.Items2")});
+            resources.GetString("comboBox1.Items1")});
             resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.Name = "comboBox1";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // txtSendCommand
             // 
@@ -767,6 +769,13 @@ namespace FxControl
             this.OneSyncInfCheck.UseVisualStyleBackColor = true;
             this.OneSyncInfCheck.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged_1);
             // 
+            // button7
+            // 
+            resources.ApplyResources(this.button7, "button7");
+            this.button7.Name = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click_1);
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnAddTimeToList;
@@ -901,6 +910,7 @@ namespace FxControl
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox OneSyncInfCheck;
+        private System.Windows.Forms.Button button7;
     }
 }
 

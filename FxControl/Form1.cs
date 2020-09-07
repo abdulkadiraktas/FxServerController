@@ -521,7 +521,7 @@ namespace FxControl
         {
             for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
             {
-                Ress("restart", dataGridView1.SelectedRows[i].Cells[0].Value.ToString(), "");
+                Ress("ensure", dataGridView1.SelectedRows[i].Cells[0].Value.ToString(), "");
                 dataGridView1.Rows.Remove(dataGridView1.SelectedRows[i]);
             }
         }
@@ -598,14 +598,12 @@ namespace FxControl
 
         private void BtnShowLogs_Click(object sender, EventArgs e)
         {
-            //829; 708
-            //446; 348
             if (richTxtLogScreen.Visible)
             {
                 richTxtLogScreen.Hide();
-                MinimumSize = new Size(466, 708);
-                MaximumSize = new Size(466, 708);
-                Size = new Size(466, 460);
+                MinimumSize = new Size(490, 708);
+                MaximumSize = new Size(490, 708);
+                Size = new Size(490, 460);
             }
             else
             {
@@ -865,6 +863,16 @@ namespace FxControl
         private void checkBox2_CheckedChanged_1(object sender, EventArgs e)
         {
             checkInfOneSync();
+        } 
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            Process.Start("https://www.patreon.com/abdulkadiraktas?fan_landing=true");
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void Button5_Click(object sender, EventArgs e)
