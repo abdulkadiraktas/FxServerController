@@ -37,7 +37,7 @@ https://forum.fivem.net/uploads/default/original/3X/5/4/54d5a9919dc6afbc8b47eaa2
  
 
 ## Forum link : 
-# https://forum.cfx.re/t/release-windows-cfx-re-server-controller-big-update-07-09-2020/553358
+# https://forum.oyunfragmanlari.com/threads/cfx-re-server-controller.778/
 
 # Thank you @TanguyOrtegat
 
