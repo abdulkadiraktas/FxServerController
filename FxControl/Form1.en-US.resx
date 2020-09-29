@@ -204,4 +204,10 @@
   <data name="selectedgame" xml:space="preserve">
     <value>Current Game : </value>
   </data>
+  <data name="btnOneSyncSave.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Sever Restart Message</value>
+  </data>
 </root>

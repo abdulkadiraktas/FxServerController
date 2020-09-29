@@ -193,7 +193,7 @@ namespace FxControl
             annonCheck.Checked = !annonCheck.Checked;
             HashCreate();
             txtServerRestartMessage.Text = Settings.Default.ServerRestartMessage;
-            argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "").Replace("\\", " / ") + "citizen/ +exec " + cfgfilename;
+            argument = "";
             richTxtLogScreen.Hide();
             MinimumSize = new Size(490, 708);
             MaximumSize = new Size(490, 708);
@@ -230,11 +230,12 @@ namespace FxControl
                 oneSyncBeyondCheck.Checked = true;
                 oneSyncBeyondCheck.Checked = false;
             }
+            txtOneSync.Text = Settings.Default.txtOneSync;
+
         }
 
         private async void Timer1_Tick(object sender, EventArgs e)
         {
-            label7.Text = argument;
             for (int i = 0; i < lstBoxTiming.Items.Count; i++)
             {
                 if (DateTime.Now.ToString("HH:mm:ss") == lstBoxTiming.Items[i].ToString())
@@ -381,7 +382,7 @@ namespace FxControl
             {
                 WindowStyle = ProcessWindowStyle.Hidden,
                 FileName = Settings.Default.ServerExeLocation,
-                Arguments = argument,
+                Arguments = " +exec " + cfgfilename + " " + Settings.Default.txtOneSync,
                 WorkingDirectory = Settings.Default.ServerConfigLocation.Replace("\\" + cfgfilename, "")
             };
             startInfo.CreateNoWindow = true;
@@ -750,7 +751,9 @@ namespace FxControl
         private void Button2_Click(object sender, EventArgs e)
         {
             Settings.Default.ServerIP = txtServerIp.Text;
+            Settings.Default.txtOneSync = txtOneSync.Text;
             Settings.Default.Save();
+            label10.Visible = false;
         }
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -835,16 +838,19 @@ namespace FxControl
         {
             btnStartServer.Enabled = true;
             lblcurrentgame.Text = selectedgame + " RDR3";
-            argument = Settings.Default.ServerExeLocation+ " +exec "+ cfgfilename + " +set gamename rdr3 ";
+            
+            argument = argument.Replace(" +set gamename rdr3","") + " +set gamename rdr3";
+            //argument = Settings.Default.ServerExeLocation+ " +exec "+ cfgfilename + " +set gamename rdr3 ";
         }
          
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec " + cfgfilename;
+            //argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec " + cfgfilename;
             btnStartServer.Enabled = true;
             lblcurrentgame.Text = selectedgame + " GTA5";
-            checkOneSync();
-            checkInfOneSync();
+            //checkOneSync();
+            //checkInfOneSync();
+            argument = argument.Replace(" +set gamename rdr3", "");
 
         }
 
@@ -865,7 +871,7 @@ namespace FxControl
                 Settings.Default.OneSyncCheck = false;
                 argument = argument.Replace(" +set onesync_enabled true", " +set onesync_enabled false");
             }
-            Settings.Default.Save();
+            txtOneSync.Text = argument;
         }
         private void checkInfOneSync()
         {
@@ -883,7 +889,7 @@ namespace FxControl
                 argument = argument.Replace(" +set onesync_enableInfinity true", " +set onesync_enableInfinity false");
                 Settings.Default.OneSyncInfCheck = false;
             }
-            Settings.Default.Save();
+            txtOneSync.Text = argument;
         }
         
 
@@ -900,7 +906,7 @@ namespace FxControl
                 argument = argument.Replace(" +set onesync_enableBeyond true", " +set onesync_enableBeyond false");
                 Settings.Default.oneSyncBeyondCheck = false;
             }
-            Settings.Default.Save();
+            txtOneSync.Text = argument;
         }
         private void checkBox2_CheckedChanged_1(object sender, EventArgs e)
         {
@@ -927,7 +933,18 @@ namespace FxControl
             checkOneSyncBeyond();
         }
 
-        
+        private void txtOneSync_TextChanged(object sender, EventArgs e)
+        {
+            //argument = txtOneSync.Text;
+            if (Settings.Default.txtOneSync != txtOneSync.Text)
+            {
+                label10.Visible = true;
+            }
+            else
+            {
+                label10.Visible = false;
+            }
+        }
 
         private void Button5_Click(object sender, EventArgs e)
         {

@@ -73,7 +73,7 @@ namespace FxControl
             this.OneSyncInfCheck = new System.Windows.Forms.CheckBox();
             this.oneSyncCheck = new System.Windows.Forms.CheckBox();
             this.txtServerIp = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnOneSyncSave = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtServerLogsLocation = new System.Windows.Forms.TextBox();
             this.btnChangeServerLogsLocation = new System.Windows.Forms.Button();
@@ -116,8 +116,10 @@ namespace FxControl
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnShowLogs = new System.Windows.Forms.Button();
             this.richTxtLogScreen = new System.Windows.Forms.RichTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.txtOneSync = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -143,7 +145,6 @@ namespace FxControl
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.groupBox12.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -359,7 +360,6 @@ namespace FxControl
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.groupBox12);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.groupBox3);
             resources.ApplyResources(this.tabPage2, "tabPage2");
@@ -426,11 +426,15 @@ namespace FxControl
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.txtOneSync);
             this.groupBox3.Controls.Add(this.oneSyncBeyondCheck);
             this.groupBox3.Controls.Add(this.OneSyncInfCheck);
             this.groupBox3.Controls.Add(this.oneSyncCheck);
             this.groupBox3.Controls.Add(this.txtServerIp);
-            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.btnOneSyncSave);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.txtServerLogsLocation);
             this.groupBox3.Controls.Add(this.btnChangeServerLogsLocation);
@@ -471,12 +475,12 @@ namespace FxControl
             resources.ApplyResources(this.txtServerIp, "txtServerIp");
             this.txtServerIp.Name = "txtServerIp";
             // 
-            // button2
+            // btnOneSyncSave
             // 
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            resources.ApplyResources(this.btnOneSyncSave, "btnOneSyncSave");
+            this.btnOneSyncSave.Name = "btnOneSyncSave";
+            this.btnOneSyncSave.UseVisualStyleBackColor = true;
+            this.btnOneSyncSave.Click += new System.EventHandler(this.Button2_Click);
             // 
             // label4
             // 
@@ -790,17 +794,27 @@ namespace FxControl
             this.richTxtLogScreen.ReadOnly = true;
             this.richTxtLogScreen.TextChanged += new System.EventHandler(this.richTxtLogScreen_TextChanged);
             // 
-            // label7
+            // txtOneSync
             // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
+            resources.ApplyResources(this.txtOneSync, "txtOneSync");
+            this.txtOneSync.Name = "txtOneSync";
+            this.txtOneSync.TextChanged += new System.EventHandler(this.txtOneSync_TextChanged);
             // 
-            // groupBox12
+            // label8
             // 
-            this.groupBox12.Controls.Add(this.label7);
-            resources.ApplyResources(this.groupBox12, "groupBox12");
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.TabStop = false;
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.ForeColor = System.Drawing.Color.DarkRed;
+            this.label10.Name = "label10";
             // 
             // Form1
             // 
@@ -848,7 +862,6 @@ namespace FxControl
             this.contextMenuStrip2.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            this.groupBox12.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -914,7 +927,7 @@ namespace FxControl
         private System.Windows.Forms.ToolStripMenuItem banToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtServerIp;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnOneSyncSave;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox oneSyncCheck;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -939,8 +952,10 @@ namespace FxControl
         private System.Windows.Forms.CheckBox OneSyncInfCheck;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.CheckBox oneSyncBeyondCheck;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtOneSync;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
 

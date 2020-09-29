@@ -57,4 +57,3 @@ D:\git\FxServerController\FxControl\obj\Debug\fr-FR\FxControl.resources.dll
 D:\git\FxServerController\FxControl\obj\Debug\pl-PL\FxControl.resources.dll
 D:\git\FxServerController\FxControl\obj\Debug\FxControl.exe
 D:\git\FxServerController\FxControl\obj\Debug\FxControl.pdb
-D:\git\FxServerController\FxControl\obj\Debug\FxControl.csprojAssemblyReference.cache
