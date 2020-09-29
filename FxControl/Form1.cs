@@ -173,6 +173,32 @@ namespace FxControl
         {
             selectedgame = rm.GetString("selectedgame", CultureInfo.CurrentCulture);
             cfgfilename = Settings.Default.cfgfilename;
+            dt = new DataTable();
+            dt2 = new DataTable();
+            dt.Columns.Add("resource");
+            dt2.Columns.Add("name");
+            dt2.Columns.Add("id");
+            dt2.Columns.Add("ping");
+            CheckForIllegalCrossThreadCalls = false;
+            Fxselectlocation();
+            Configselectlocation();
+            SetupServerLog();
+            Serveripsave();
+            chckBoxClearCache.Checked = Settings.Default.cache;
+            chckBoxEnableServerLogs.Checked = Settings.Default.EnableServerLogs;
+            txtServerIp.Text = Settings.Default.ServerIP;
+            txtduyuru.Text = Settings.Default.duyuru;
+            annonCheck.Checked = Settings.Default.duyuruCheck;
+            annonCheck.Checked = !annonCheck.Checked;
+            annonCheck.Checked = !annonCheck.Checked;
+            HashCreate();
+            txtServerRestartMessage.Text = Settings.Default.ServerRestartMessage;
+            argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "").Replace("\\", " / ") + "citizen/ +exec " + cfgfilename;
+            richTxtLogScreen.Hide();
+            MinimumSize = new Size(490, 708);
+            MaximumSize = new Size(490, 708);
+            Size = new Size(490, 708);
+
             if (Settings.Default.OneSyncCheck)
             {
                 oneSyncCheck.Checked = false;
@@ -194,35 +220,21 @@ namespace FxControl
                 OneSyncInfCheck.Checked = false;
             }
 
-            dt = new DataTable();
-            dt2 = new DataTable();
-            dt.Columns.Add("resource");
-            dt2.Columns.Add("name");
-            dt2.Columns.Add("id");
-            dt2.Columns.Add("ping");
-            CheckForIllegalCrossThreadCalls = false;
-            Fxselectlocation();
-            Configselectlocation();
-            SetupServerLog();
-            Serveripsave();
-            chckBoxClearCache.Checked = Settings.Default.cache;
-            chckBoxEnableServerLogs.Checked = Settings.Default.EnableServerLogs;
-            txtServerIp.Text = Settings.Default.ServerIP;
-            txtduyuru.Text = Settings.Default.duyuru;
-            annonCheck.Checked = Settings.Default.duyuruCheck;
-            annonCheck.Checked = !annonCheck.Checked;
-            annonCheck.Checked = !annonCheck.Checked;
-            HashCreate();
-            txtServerRestartMessage.Text = Settings.Default.ServerRestartMessage;
-            argument = "+set citizen_dir " + Settings.Default.ServerExeLocation.Replace("FXServer.exe", "") + "/citizen/ +exec " + cfgfilename;
-            richTxtLogScreen.Hide();
-            MinimumSize = new Size(490, 708);
-            MaximumSize = new Size(490, 708);
-            Size = new Size(490, 708);
+            if (Settings.Default.oneSyncBeyondCheck)
+            {
+                oneSyncBeyondCheck.Checked = false;
+                oneSyncBeyondCheck.Checked = true;
+            }
+            else
+            {
+                oneSyncBeyondCheck.Checked = true;
+                oneSyncBeyondCheck.Checked = false;
+            }
         }
 
         private async void Timer1_Tick(object sender, EventArgs e)
         {
+            label7.Text = argument;
             for (int i = 0; i < lstBoxTiming.Items.Count; i++)
             {
                 if (DateTime.Now.ToString("HH:mm:ss") == lstBoxTiming.Items[i].ToString())
@@ -835,32 +847,58 @@ namespace FxControl
             checkInfOneSync();
 
         }
-         
+
+
+        private void checkOneSync()
+        {
+            if (oneSyncCheck.Checked)
+            {
+                OneSyncInfCheck.Enabled = true;
+                Settings.Default.OneSyncCheck = true;
+                argument += " +set onesync_enabled true";
+                argument = argument.Replace(" +set onesync_enabled false", "");
+            }
+            else
+            {
+                OneSyncInfCheck.Enabled = false;
+                OneSyncInfCheck.Checked = false;
+                Settings.Default.OneSyncCheck = false;
+                argument = argument.Replace(" +set onesync_enabled true", " +set onesync_enabled false");
+            }
+            Settings.Default.Save();
+        }
         private void checkInfOneSync()
         {
             if (OneSyncInfCheck.Checked)
             {
+                oneSyncBeyondCheck.Enabled = true;
+                argument = argument.Replace(" +set onesync_enableInfinity false", "");
                 argument = argument + " +set onesync_enableInfinity true";
                 Settings.Default.OneSyncInfCheck = true;
             }
             else
             {
-                argument = argument.Replace(" +set onesync_enableInfinity true", "");
+                oneSyncBeyondCheck.Enabled = false;
+                oneSyncBeyondCheck.Checked = false;
+                argument = argument.Replace(" +set onesync_enableInfinity true", " +set onesync_enableInfinity false");
                 Settings.Default.OneSyncInfCheck = false;
             }
             Settings.Default.Save();
         }
-        private void checkOneSync()
+        
+
+        private void checkOneSyncBeyond()
         {
-            if (oneSyncCheck.Checked)
+            if (oneSyncBeyondCheck.Checked)
             {
-                Settings.Default.OneSyncCheck = true;
-                argument += " +set onesync legacy";
+                argument = argument.Replace(" +set onesync_enableBeyond false", "");
+                argument = argument + " +set onesync_enableBeyond true";
+                Settings.Default.oneSyncBeyondCheck = true;
             }
             else
             {
-                Settings.Default.OneSyncCheck = false;
-                argument = argument.Replace(" +set onesync legacy", "");
+                argument = argument.Replace(" +set onesync_enableBeyond true", " +set onesync_enableBeyond false");
+                Settings.Default.oneSyncBeyondCheck = false;
             }
             Settings.Default.Save();
         }
@@ -883,6 +921,13 @@ namespace FxControl
         {
 
         }
+
+        private void checkBox2_CheckedChanged_2(object sender, EventArgs e)
+        {
+            checkOneSyncBeyond();
+        }
+
+        
 
         private void Button5_Click(object sender, EventArgs e)
         {

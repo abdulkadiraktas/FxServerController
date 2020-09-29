@@ -190,5 +190,17 @@ namespace FxControl.Properties {
                 this["OneSyncInfCheck"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool oneSyncBeyondCheck {
+            get {
+                return ((bool)(this["oneSyncBeyondCheck"]));
+            }
+            set {
+                this["oneSyncBeyondCheck"] = value;
+            }
+        }
     }
 }

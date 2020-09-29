@@ -69,6 +69,7 @@ namespace FxControl
             this.chckBoxEnableServerLogs = new System.Windows.Forms.CheckBox();
             this.chckBoxClearCache = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.oneSyncBeyondCheck = new System.Windows.Forms.CheckBox();
             this.OneSyncInfCheck = new System.Windows.Forms.CheckBox();
             this.oneSyncCheck = new System.Windows.Forms.CheckBox();
             this.txtServerIp = new System.Windows.Forms.TextBox();
@@ -115,6 +116,8 @@ namespace FxControl
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnShowLogs = new System.Windows.Forms.Button();
             this.richTxtLogScreen = new System.Windows.Forms.RichTextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -140,6 +143,7 @@ namespace FxControl
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -355,6 +359,7 @@ namespace FxControl
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox12);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.groupBox3);
             resources.ApplyResources(this.tabPage2, "tabPage2");
@@ -421,6 +426,7 @@ namespace FxControl
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.oneSyncBeyondCheck);
             this.groupBox3.Controls.Add(this.OneSyncInfCheck);
             this.groupBox3.Controls.Add(this.oneSyncCheck);
             this.groupBox3.Controls.Add(this.txtServerIp);
@@ -438,6 +444,13 @@ namespace FxControl
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // oneSyncBeyondCheck
+            // 
+            resources.ApplyResources(this.oneSyncBeyondCheck, "oneSyncBeyondCheck");
+            this.oneSyncBeyondCheck.Name = "oneSyncBeyondCheck";
+            this.oneSyncBeyondCheck.UseVisualStyleBackColor = true;
+            this.oneSyncBeyondCheck.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged_2);
             // 
             // OneSyncInfCheck
             // 
@@ -777,6 +790,18 @@ namespace FxControl
             this.richTxtLogScreen.ReadOnly = true;
             this.richTxtLogScreen.TextChanged += new System.EventHandler(this.richTxtLogScreen_TextChanged);
             // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.label7);
+            resources.ApplyResources(this.groupBox12, "groupBox12");
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.TabStop = false;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnAddTimeToList;
@@ -823,6 +848,7 @@ namespace FxControl
             this.contextMenuStrip2.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -912,6 +938,9 @@ namespace FxControl
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox OneSyncInfCheck;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.CheckBox oneSyncBeyondCheck;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox12;
     }
 }
 
