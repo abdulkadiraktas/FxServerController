@@ -213,4 +213,25 @@
   <data name="groupBox11.Text" xml:space="preserve">
     <value>Sunucu Restart Mesajı</value>
   </data>
+  <data name="annonCheck.Text" xml:space="preserve">
+    <value>Aktif Et</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>Duyuruyu Gönder</value>
+  </data>
+  <data name="button4.Text" xml:space="preserve">
+    <value>Kodu Sıfırla</value>
+  </data>
+  <data name="button7.Text" xml:space="preserve">
+    <value>Beni desteklemek için &lt;&lt;buraya tıklayın&gt;&gt;</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Duyuru Ayarları</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Duyuru için geri sayım süresi</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Duyuru Metni</value>
+  </data>
 </root>

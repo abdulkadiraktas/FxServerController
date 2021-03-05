@@ -432,7 +432,12 @@ namespace FxControl
                     //Thread addDatathread = new Thread(() =>
                     //AddData(e.Data.Replace("Started resource", "").Trim()));
                     //addDatathread.Start();
-                    await AddData(e.Data.Replace("Started resource", "").Trim());
+                    //[38;5;73m[ citizen-server-impl] [0m monitor
+
+                    string phrase = e.Data;
+                    string[] words = phrase.Split(' ');
+                    string lastItem = words[words.Length - 1];
+                    await AddData(lastItem.Trim());
                 }
                 else if (e.Data.Contains("A minidump can be found at"))
                 {

@@ -210,4 +210,29 @@
   <data name="groupBox11.Text" xml:space="preserve">
     <value>Sever Restart Message</value>
   </data>
+  <data name="annonCheck.Text" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="button4.Text" xml:space="preserve">
+    <value>Hash Reset</value>
+  </data>
+  <data name="button7.Text" xml:space="preserve">
+    <value>If you want support me 
+&lt;&lt; Click Here &gt;&gt;</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Announce Setting</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Seconds for the announcement</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Announcement</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Resources</value>
+  </data>
 </root>
